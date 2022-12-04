@@ -4,9 +4,12 @@ import ListCard from './ListCard.js'
 import MUIDeleteModal from './MUIDeleteModal'
 
 import AddIcon from '@mui/icons-material/Add';
-import Fab from '@mui/material/Fab'
+import Fab from '@mui/material/Fab';
 import List from '@mui/material/List';
-import Box from '@mui/material/Box'
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import YouTubePlayer from './YoutubePlayer.js'
+import VideoPlayerSpace from './VideoPlayerSpace';
 /*
     This React component lists all the top5 lists in the UI.
     
@@ -59,12 +62,20 @@ const HomeScreen = () => {
             </Fab>
                 Your Playlists
             </div>
-            <Box sx={{bgcolor:"background.paper"}} id="list-selector-list">
-                {
-                    listCard
-                }
-                <MUIDeleteModal />
-            </Box>
+            <Grid container id="list-selector-workspace">
+                <Grid item xs={6}>
+                    <Box sx={{bgcolor:"background.paper"}} id="list-selector-list">
+                        {
+                            listCard
+                        }
+                        <MUIDeleteModal />
+                    </Box>
+                </Grid>
+                <Grid item xs={6}>
+                    <VideoPlayerSpace/>
+                    {/* <YouTubePlayer /> */}
+                </Grid>
+            </Grid>
         </div>)
 }
 
