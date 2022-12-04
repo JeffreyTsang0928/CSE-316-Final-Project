@@ -6,6 +6,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import ListItem from '@mui/material/ListItem';
 import TextField from '@mui/material/TextField';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 /*
     This is a card in our list of top 5 lists. It lets select
@@ -18,20 +23,27 @@ function ListCard(props) {
     const { store } = useContext(GlobalStoreContext);
     const [editActive, setEditActive] = useState(false);
     const [text, setText] = useState("");
+    const [expand, setExpand] = useState(false);
     const { idNamePair, selected } = props;
 
+    const toggleAccordion = () => {
+        setExpand((prev) => !prev);
+    }
+
     function handleLoadList(event, id) {
-        console.log("handleLoadList for " + id);
-        if (!event.target.disabled) {
-            let _id = event.target.id;
-            if (_id.indexOf('list-card-text-') >= 0)
-                _id = ("" + _id).substring("list-card-text-".length);
+        // console.log("handleLoadList for " + id);
+        // if (!event.target.disabled) {
+        //     let _id = event.target.id;
+        //     if (_id.indexOf('list-card-text-') >= 0)
+        //         _id = ("" + _id).substring("list-card-text-".length);
 
-            console.log("load " + event.target.id);
+        //     console.log("load " + event.target.id);
 
-            // CHANGE THE CURRENT LIST
-            store.setCurrentList(id);
-        }
+        //     // CHANGE THE CURRENT LIST
+        //     store.setCurrentList(id);
+        // }
+
+        //we dont currently want to load a list in a new screen
     }
 
     function handleToggleEdit(event) {
@@ -73,31 +85,53 @@ function ListCard(props) {
     if (store.isListNameEditActive) {
         cardStatus = true;
     }
+
+    
     let cardElement =
-        <ListItem
-            id={idNamePair._id}
-            key={idNamePair._id}
-            sx={{borderRadius:"25px", p: "10px", bgcolor: '#8000F00F', marginTop: '15px', display: 'flex', p: 1 }}
-            style={{transform:"translate(1%,0%)", width: '98%', fontSize: '48pt' }}
-            button
-            onClick={(event) => {
-                handleLoadList(event, idNamePair._id)
-            }}
-        >
-            <Box sx={{ p: 1, flexGrow: 1 }}>{idNamePair.name}</Box>
-            <Box sx={{ p: 1 }}>
-                <IconButton onClick={handleToggleEdit} aria-label='edit'>
-                    <EditIcon style={{fontSize:'48pt'}} />
-                </IconButton>
-            </Box>
-            <Box sx={{ p: 1 }}>
-                <IconButton onClick={(event) => {
-                        handleDeleteList(event, idNamePair._id)
-                    }} aria-label='delete'>
-                    <DeleteIcon style={{fontSize:'48pt'}} />
-                </IconButton>
-            </Box>
-        </ListItem>
+        
+            <ListItem
+                id={idNamePair._id}
+                key={idNamePair._id}
+                sx={{borderRadius:"25px", p: "10px", bgcolor: '#8000F00F', marginTop: '15px', display: 'flex', p: 1 }}
+                style={{transform:"translate(1%,0%)", width: '98%', fontSize: '48pt' }}
+                button
+                onClick={(event) => {
+                    handleLoadList(event, idNamePair._id)
+                }}
+            >
+                <Accordion expanded={expand}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon 
+                                onClick={toggleAccordion}
+                                fontSize='36px'
+                            />}
+                        
+                    >
+                        <Box sx={{ p: 1, flexGrow: 1 }}>{idNamePair.name}</Box>
+                        <Box sx={{ p: 1 }}>
+                            <IconButton onClick={handleToggleEdit} aria-label='edit'>
+                                <EditIcon style={{fontSize:'48pt'}} />
+                            </IconButton>
+                        </Box>
+                        <Box sx={{ p: 1 }}>
+                            <IconButton onClick={(event) => {
+                                    handleDeleteList(event, idNamePair._id)
+                                }} aria-label='delete'>
+                                <DeleteIcon style={{fontSize:'48pt'}} />
+                            </IconButton>
+                        </Box>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                            malesuada lacus ex, sit amet blandit leo lobortis eget.
+                        </Typography>
+                    </AccordionDetails>
+                </Accordion>
+
+            </ListItem>
+            
+
 
     if (editActive) {
         cardElement =

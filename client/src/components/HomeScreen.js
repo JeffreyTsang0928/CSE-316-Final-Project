@@ -63,7 +63,7 @@ const HomeScreen = () => {
                 Your Playlists
             </div>
             <Grid container id="list-selector-workspace">
-                <Grid item xs={6}>
+                <Grid item xs={7}>
                     <Box sx={{bgcolor:"background.paper"}} id="list-selector-list">
                         {
                             listCard
@@ -71,7 +71,7 @@ const HomeScreen = () => {
                         <MUIDeleteModal />
                     </Box>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={5}>
                     <VideoPlayerSpace/>
                     {/* <YouTubePlayer /> */}
                 </Grid>

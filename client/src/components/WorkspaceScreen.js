@@ -49,6 +49,7 @@ function WorkspaceScreen() {
                     </Box>
                 </Grid>
                 <Grid item xs={6}>
+                    {/*DONT USE THIS ONE  */}
                     {/* Video here */}
                     {/* <YouTubePlayer /> */}
                 </Grid>

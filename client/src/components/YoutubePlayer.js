@@ -14,15 +14,18 @@ export default function YouTubePlayer() {
     // FROM ONE SONG TO THE NEXT
 
     // THIS HAS THE YOUTUBE IDS FOR THE SONGS IN OUR PLAYLIST
-    let playlist = store.currentList.songs
+    // let playlist = store.currentList.songs
+    let playlist =[
+        "fIuPyIs4S4c"
+    ]
 
 
     // THIS IS THE INDEX OF THE SONG CURRENTLY IN USE IN THE PLAYLIST
     let currentSong = 0;
 
     const playerOptions = {
-        height: '390',
-        width: '640',
+        height: '300',
+        width: '500',
         playerVars: {
             // https://developers.google.com/youtube/player_parameters
             autoplay: 0,
