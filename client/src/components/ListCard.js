@@ -11,6 +11,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { bgcolor } from '@mui/system';
+import WorkspaceScreen from './WorkspaceScreen';
 
 /*
     This is a card in our list of top 5 lists. It lets select
@@ -31,17 +33,17 @@ function ListCard(props) {
     }
 
     function handleLoadList(event, id) {
-        // console.log("handleLoadList for " + id);
-        // if (!event.target.disabled) {
-        //     let _id = event.target.id;
-        //     if (_id.indexOf('list-card-text-') >= 0)
-        //         _id = ("" + _id).substring("list-card-text-".length);
+        console.log("handleLoadList for " + id);
+        if (!event.target.disabled) {
+            let _id = event.target.id;
+            if (_id.indexOf('list-card-text-') >= 0)
+                _id = ("" + _id).substring("list-card-text-".length);
 
-        //     console.log("load " + event.target.id);
+            console.log("load " + event.target.id);
 
-        //     // CHANGE THE CURRENT LIST
-        //     store.setCurrentList(id);
-        // }
+            // CHANGE THE CURRENT LIST
+            store.setCurrentList(id);
+        }
 
         //we dont currently want to load a list in a new screen
     }
@@ -78,8 +80,9 @@ function ListCard(props) {
     }
 
     let selectClass = "unselected-list-card";
-    if (selected) {
-        selectClass = "selected-list-card";
+    let bgcolor = 'white';
+    if (store.currentList != null && store.currentList._id === idNamePair._id ){
+        bgcolor='yellow';
     }
     let cardStatus = false;
     if (store.isListNameEditActive) {
@@ -92,11 +95,13 @@ function ListCard(props) {
             <ListItem
                 id={idNamePair._id}
                 key={idNamePair._id}
-                sx={{borderRadius:"25px", p: "10px", bgcolor: '#8000F00F', marginTop: '15px', display: 'flex', p: 1 }}
+                className={selectClass} 
+                sx={{borderRadius:"25px", p: "10px", bgcolor: bgcolor, marginTop: '15px', display: 'flex', p: 1 }}
                 style={{transform:"translate(1%,0%)", width: '98%', fontSize: '48pt' }}
-                button
+                // button
                 onClick={(event) => {
                     handleLoadList(event, idNamePair._id)
+                    console.log("heheh");
                 }}
             >
                 <Accordion expanded={expand}>
@@ -122,10 +127,11 @@ function ListCard(props) {
                         </Box>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Typography>
+                        {/* <Typography>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                             malesuada lacus ex, sit amet blandit leo lobortis eget.
-                        </Typography>
+                        </Typography> */}
+                        <WorkspaceScreen />
                     </AccordionDetails>
                 </Accordion>
 

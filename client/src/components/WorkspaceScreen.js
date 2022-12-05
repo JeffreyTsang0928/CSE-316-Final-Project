@@ -25,36 +25,31 @@ function WorkspaceScreen() {
     else if (store.isRemoveSongModalOpen()) {
         modalJSX = <MUIRemoveSongModal />;
     }
-    return (
-        <Box id="workspace">
-            <Grid container id="list-selector-workspace">
-                <Grid item xs={6}>
-                    <Box id="list-selector-list">
-                    <List 
-                        id="playlist-cards" 
-                        sx={{overflow: 'scroll', height: '87%', width: '100%', bgcolor: '#8000F00F'}}
-                    >
-                        {
-                            store.currentList.songs.map((song, index) => (
-                                <SongCard
-                                    id={'playlist-song-' + (index)}
-                                    key={'playlist-song-' + (index)}
-                                    index={index}
-                                    song={song}
-                                />
-                            ))  
-                        }
-                    </List>            
-                    { modalJSX }
-                    </Box>
-                </Grid>
-                <Grid item xs={6}>
-                    {/*DONT USE THIS ONE  */}
-                    {/* Video here */}
-                    {/* <YouTubePlayer /> */}
-                </Grid>
-            </Grid>
+    let workspace= <Box/>
+    if(store.currentList!=null){
+        workspace = <Box id="song-cards">
+        <Box id="list-selector-list">
+        <List 
+            id="playlist-cards" 
+            sx={{overflow: 'scroll', height: '87%', width: '100%', bgcolor: '#8000F00F'}}
+        >
+            {
+                store.currentList.songs.map((song, index) => (
+                    <SongCard
+                        id={'playlist-song-' + (index)}
+                        key={'playlist-song-' + (index)}
+                        index={index}
+                        song={song}
+                    />
+                ))  
+            }
+        </List>            
+        { modalJSX }
         </Box>
+    </Box>
+    }
+    return (
+        workspace
     )
 }
 
