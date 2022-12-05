@@ -412,6 +412,7 @@ function GlobalStoreContextProvider(props) {
             }
         }
         asyncSetCurrentList(id);
+        tps.clearAllTransactions();
     }
 
     store.getPlaylistSize = function() {

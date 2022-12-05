@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { Typography } from '@mui/material';
+import VideoController from './VideoController.js';
 
 
 
@@ -51,6 +52,7 @@ function VideoPlayerSpace(){
                 </Box>
                 )}
             </Box>
+            <VideoController />
         </Box>
     )
 }
