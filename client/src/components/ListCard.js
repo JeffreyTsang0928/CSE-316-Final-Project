@@ -80,9 +80,11 @@ function ListCard(props) {
     }
 
     let selectClass = "unselected-list-card";
+    let currentSelected = false;
     let bgcolor = 'white';
-    if (store.currentList != null && store.currentList._id === idNamePair._id ){
+    if (store.currentList != null && store.currentList._id === idNamePair._id){
         bgcolor='yellow';
+        currentSelected=true;
     }
     let cardStatus = false;
     if (store.isListNameEditActive) {
@@ -104,7 +106,7 @@ function ListCard(props) {
                     console.log("heheh");
                 }}
             >
-                <Accordion expanded={expand}>
+                <Accordion expanded={expand && currentSelected} sx={{width: '100%', height: '100%'}}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon 
                                 onClick={toggleAccordion}
@@ -127,10 +129,10 @@ function ListCard(props) {
                         </Box>
                     </AccordionSummary>
                     <AccordionDetails>
-                        {/* <Typography>
+                        <Typography>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                             malesuada lacus ex, sit amet blandit leo lobortis eget.
-                        </Typography> */}
+                        </Typography>
                         <WorkspaceScreen />
                     </AccordionDetails>
                 </Accordion>

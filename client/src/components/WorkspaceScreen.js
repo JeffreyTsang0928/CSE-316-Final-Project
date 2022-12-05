@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import Grid from '@mui/material/Grid';
 import { GlobalStoreContext } from '../store/index.js'
+import EditToolbar from './EditToolbar.js'
 /*
     This React component lets us edit a loaded list, which only
     happens when we are on the proper route.
@@ -28,10 +29,10 @@ function WorkspaceScreen() {
     let workspace= <Box/>
     if(store.currentList!=null){
         workspace = <Box id="song-cards">
-        <Box id="list-selector-list">
+        <Box>
         <List 
             id="playlist-cards" 
-            sx={{overflow: 'scroll', height: '87%', width: '100%', bgcolor: '#8000F00F'}}
+            sx={{overflow: 'scroll', height: '100%', width: '100%', bgcolor: '#8000F00F'}}
         >
             {
                 store.currentList.songs.map((song, index) => (
@@ -46,6 +47,7 @@ function WorkspaceScreen() {
         </List>            
         { modalJSX }
         </Box>
+        <EditToolbar />
     </Box>
     }
     return (

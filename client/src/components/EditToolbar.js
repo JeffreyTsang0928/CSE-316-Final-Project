@@ -15,7 +15,8 @@ import CloseIcon from '@mui/icons-material/HighlightOff';
 function EditToolbar() {
     const { store } = useContext(GlobalStoreContext);
 
-    function handleAddNewSong() {
+    function handleAddNewSong(event) {
+        event.stopPropagation();
         store.addNewSong();
     }
     function handleUndo() {
@@ -32,7 +33,10 @@ function EditToolbar() {
             <Button
                 disabled={!store.canAddNewSong()}
                 id='add-song-button'
-                onClick={handleAddNewSong}
+                onClick={(event) => {
+                    handleAddNewSong(event)
+                    console.log("adding song");
+                }}
                 variant="contained">
                 <AddIcon />
             </Button>
