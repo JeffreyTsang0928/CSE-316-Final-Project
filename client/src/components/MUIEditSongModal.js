@@ -27,7 +27,8 @@ export default function MUIEditSongModal() {
     const [ artist, setArtist ] = useState(store.currentSong.artist);
     const [ youTubeId, setYouTubeId ] = useState(store.currentSong.youTubeId);
 
-    function handleConfirmEditSong() {
+    function handleConfirmEditSong(event) {
+        event.stopPropagation();
         let newSongData = {
             title: title,
             artist: artist,
@@ -36,20 +37,30 @@ export default function MUIEditSongModal() {
         store.addUpdateSongTransaction(store.currentSongIndex, newSongData);        
     }
 
-    function handleCancelEditSong() {
+    function handleCancelEditSong(event) {
+        event.stopPropagation();
         store.hideModals();
     }
 
     function handleUpdateTitle(event) {
+        event.stopPropagation();
         setTitle(event.target.value);
     }
 
     function handleUpdateArtist(event) {
+        event.stopPropagation();
         setArtist(event.target.value);
     }
 
     function handleUpdateYouTubeId(event) {
+        event.stopPropagation();
         setYouTubeId(event.target.value);
+    }
+    
+    function clickTextBox(event){
+        event.preventDefault();
+        event.stopPropagation();
+        console.log("clicked on text box");
     }
 
     return (
@@ -63,16 +74,43 @@ export default function MUIEditSongModal() {
             </Typography>
             <Divider sx={{borderBottomWidth: 5, p: '5px', transform: 'translate(-5.5%, 0%)', width:377}}/>
             <Typography sx={{mt: "10px", color: "#702963", fontWeight:"bold", fontSize:"30px"}} id="modal-modal-title" variant="h6" component="h2">
-                Title: <input id="edit-song-modal-title-textfield" className='modal-textfield' type="text" defaultValue={title} onChange={handleUpdateTitle} />
+                Title: <input id="edit-song-modal-title-textfield" className='modal-textfield' type="text" defaultValue={title} 
+                    onChange={(event) => {
+                        handleUpdateTitle(event)
+                        console.log("updating title");
+                    }} 
+                    onClick={(event)=>{
+                        clickTextBox(event);
+                        
+                    }}
+                    />
             </Typography>
             <Typography sx={{color: "#702963", fontWeight:"bold", fontSize:"30px"}} id="modal-modal-artist" variant="h6" component="h2">
-            Artist: <input id="edit-artist-modal-title-textfield" className='modal-textfield' type="text" defaultValue={artist} onChange={handleUpdateArtist} />
+            Artist: <input id="edit-artist-modal-title-textfield" className='modal-textfield' type="text" defaultValue={artist} 
+                onChange={handleUpdateArtist} 
+                onClick={(event)=>{
+                    clickTextBox(event);
+                    
+                }}/>
             </Typography>
             <Typography sx={{color: "#702963", fontWeight:"bold", fontSize:"25px"}} id="modal-modal-youTubeId" variant="h6" component="h2">
-                YouTubeId: <input id="edit-artist-modal-youTubeId-textfield" className='modal-textfield' type="text" defaultValue={youTubeId} onChange={handleUpdateYouTubeId} />
+                YouTubeId: <input id="edit-artist-modal-youTubeId-textfield" className='modal-textfield' type="text" defaultValue={youTubeId} 
+                    onChange={handleUpdateYouTubeId} 
+                    onClick={(event)=>{
+                        clickTextBox(event);
+                        
+                    }}/>
             </Typography>
-            <Button sx={{color: "#8932CC", backgroundColor: "#CBC3E3", fontSize: 13, fontWeight: 'bold', border: 2, p:"5px", mt:"20px"}} variant="outlined" id="edit-song-confirm-button" onClick={handleConfirmEditSong}>Confirm</Button>
-            <Button sx={{opacity: 0.80, color: "#8932CC", backgroundColor: "#CBC3E3", fontSize: 13, fontWeight: 'bold', border: 2, p:"5px", mt:"20px", ml:"197px"}} variant="outlined" id="edit-song-confirm-button" onClick={handleCancelEditSong}>Cancel</Button>
+            <Button sx={{color: "#8932CC", backgroundColor: "#CBC3E3", fontSize: 13, fontWeight: 'bold', border: 2, p:"5px", mt:"20px"}} variant="outlined" id="edit-song-confirm-button" 
+                onClick={(event) => {
+                    handleConfirmEditSong(event)
+                    console.log("confirming edit...");
+                }} >Confirm</Button>
+            <Button sx={{opacity: 0.80, color: "#8932CC", backgroundColor: "#CBC3E3", fontSize: 13, fontWeight: 'bold', border: 2, p:"5px", mt:"20px", ml:"197px"}} variant="outlined" id="edit-song-confirm-button" 
+                onClick={(event) => {
+                    handleCancelEditSong(event)
+                    console.log("cancelling edit...");
+                }} >Cancel</Button>
             </div>
         </Box>
         </Modal>

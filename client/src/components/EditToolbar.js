@@ -19,13 +19,16 @@ function EditToolbar() {
         event.stopPropagation();
         store.addNewSong();
     }
-    function handleUndo() {
+    function handleUndo(event) {
+        event.stopPropagation();
         store.undo();
     }
-    function handleRedo() {
+    function handleRedo(event) {
+        event.stopPropagation();
         store.redo();
     }
-    function handleClose() {
+    function handleClose(event) {
+        event.stopPropagation();
         store.closeCurrentList();
     }
     return (
@@ -43,21 +46,30 @@ function EditToolbar() {
             <Button 
                 disabled={!store.canUndo()}
                 id='undo-button'
-                onClick={handleUndo}
+                onClick={(event) => {
+                    handleUndo(event)
+                    console.log("undoing!");
+                }}
                 variant="contained">
                     <UndoIcon />
             </Button>
             <Button 
                 disabled={!store.canRedo()}
                 id='redo-button'
-                onClick={handleRedo}
+                onClick={(event) => {
+                    handleRedo(event)
+                    console.log("redoing!");
+                }}
                 variant="contained">
                     <RedoIcon />
             </Button>
             <Button 
                 disabled={!store.canClose()}
                 id='close-button'
-                onClick={handleClose}
+                onClick={(event) => {
+                    handleClose(event)
+                    console.log("closing list!");
+                }}
                 variant="contained">
                     <CloseIcon />
             </Button>

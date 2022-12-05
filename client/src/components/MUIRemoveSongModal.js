@@ -24,11 +24,13 @@ const style1 = {
 export default function MUIRemoveSongModal() {
     const { store } = useContext(GlobalStoreContext);
 
-    function handleConfirmRemoveSong () {
+    function handleConfirmRemoveSong (event) {
+        event.stopPropagation();
         store.addRemoveSongTransaction();
     }
 
-    function handleCancelRemoveSong () {
+    function handleCancelRemoveSong (event) {
+        event.stopPropagation();
         store.hideModals();
     }
     
@@ -57,8 +59,16 @@ export default function MUIRemoveSongModal() {
                 Are you sure you want to remove the <Typography display="inline" id="modal-modal-description" variant="h6" sx={{color: "#820747CF" ,fontWeight: 'bold', mt: 2, textDecoration: 'underline'}}>{songTitle}</Typography> song?
             </Typography>
             </Box>
-            <Button sx={{opacity: 0.7, color: "#8932CC", backgroundColor: "#CBC3E3", fontSize: 13, fontWeight: 'bold', border: 2, p:"5px", mt:"60px", mr:"95px"}} variant="outlined" onClick={handleConfirmRemoveSong}> Confirm </Button>
-            <Button sx={{opacity: 0.50, color: "#8932CC", backgroundColor: "#CBC3E3", fontSize: 13, fontWeight: 'bold', border: 2, p:"5px", mt:"60px", ml:"102px"}} variant="outlined" onClick={handleCancelRemoveSong}> Cancel </Button>
+            <Button sx={{opacity: 0.7, color: "#8932CC", backgroundColor: "#CBC3E3", fontSize: 13, fontWeight: 'bold', border: 2, p:"5px", mt:"60px", mr:"95px"}} variant="outlined" 
+                onClick={(event) => {
+                    handleConfirmRemoveSong(event)
+                    console.log("cconfirming remove song");
+                }}> Confirm </Button>
+            <Button sx={{opacity: 0.50, color: "#8932CC", backgroundColor: "#CBC3E3", fontSize: 13, fontWeight: 'bold', border: 2, p:"5px", mt:"60px", ml:"102px"}} variant="outlined" 
+                onClick={(event) => {
+                    handleCancelRemoveSong(event)
+                    console.log("cancelling remove song");
+                }}> Cancel </Button>
         </Box>
     </Modal>
     );
