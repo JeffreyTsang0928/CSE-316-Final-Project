@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import {useState} from 'react';
+import { GlobalStoreContext } from '../store/index.js';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import StopIcon from '@mui/icons-material/Stop';
@@ -9,6 +10,19 @@ import FastRewindIcon from '@mui/icons-material/FastRewind';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 function VideoController() {
+
+    const { store } = useContext(GlobalStoreContext);
+
+    function handleSkipSong(event){
+        // event.stopPropagation();
+        store.incSong();
+    }
+
+    function handlePrevSong(event){
+        // event.stopPropagation();
+        store.decSong();
+    }
+
     let style = {
         border: 1,
         borderRadius: 1,
@@ -22,7 +36,14 @@ function VideoController() {
         <Box id="video-controller" sx={style}>
             <Grid container id="video-controller-grid" spacing={0} justifyContent="center">
                 <Grid>
-                        <FastRewindIcon fontSize='large'/>
+                        <FastRewindIcon sx ={{cursor: 'pointer'}}
+                            fontSize='large'
+                            onClick={(event) => {
+                                handlePrevSong(event)
+                                console.log("Going to prev song...");
+                            }}
+                            
+                        />
                 </Grid>
                 <Grid>
                         <StopIcon fontSize='large'/>
@@ -31,7 +52,13 @@ function VideoController() {
                         <PlayArrowIcon fontSize='large'/>
                 </Grid>
                 <Grid>
-                        <FastForwardIcon fontSize='large'/>
+                        <FastForwardIcon sx ={{cursor: 'pointer'}}
+                            fontSize='large' 
+                            onClick={(event) => {
+                                handleSkipSong(event)
+                                console.log("Skipping song...");
+                            }}
+                        />
                 </Grid>
             </Grid>
         </Box>

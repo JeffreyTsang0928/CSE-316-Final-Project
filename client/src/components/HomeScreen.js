@@ -39,19 +39,19 @@ const HomeScreen = () => {
                 ))
                 
             }
-            <Fab sx={{transform:"translate(1150%, 10%)"}}
+            {/* <Fab sx={{transform:"translate(1150%, 10%)"}}
                 color="primary" 
                 aria-label="add"
                 id="add-list-button"
                 onClick={handleCreateNewList}
             >
                 <AddIcon />
-            </Fab>
+            </Fab> */}
             </List>;
     }
     return (
         <div id="playlist-selector">
-            <div id="list-selector-heading">
+            {/* <div id="list-selector-heading">
             <Fab sx={{transform:"translate(-20%, 0%)"}}
                 color="primary" 
                 aria-label="add"
@@ -61,7 +61,7 @@ const HomeScreen = () => {
                 <AddIcon />
             </Fab>
                 Your Playlists
-            </div>
+            </div> */}
             <Grid container id="list-selector-workspace">
                 <Grid item xs={7}>
                     <Box sx={{bgcolor:"background.paper"}} id="list-selector-list">

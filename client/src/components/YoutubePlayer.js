@@ -3,6 +3,8 @@ import YouTube from 'react-youtube';
 import { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { GlobalStoreContext } from '../store/index.js';
+import Box from '@mui/material/Box';
+
 
 export default function YouTubePlayer() {
 
@@ -14,14 +16,27 @@ export default function YouTubePlayer() {
     // FROM ONE SONG TO THE NEXT
 
     // THIS HAS THE YOUTUBE IDS FOR THE SONGS IN OUR PLAYLIST
-    // let playlist = store.currentList.songs
-    let playlist =[
-        "fIuPyIs4S4c"
-    ]
+
+    let noSongs=true;
+    let playlist = [];
+    if(store.currentList){
+        console.log("there is a current list")
+        if(store.currentList.songs.length){
+            playlist = store.currentList.songs
+            noSongs = false;
+        }
+    }
+    // let playlist =[
+    //     "fIuPyIs4S4c"
+    // ]
 
 
     // THIS IS THE INDEX OF THE SONG CURRENTLY IN USE IN THE PLAYLIST
-    let currentSong = 0;
+    let currentSong = store.songPlaying;
+    console.log("current song: " + currentSong)
+    if(playlist.length>0){
+        console.log("youtube id in player: " + playlist[currentSong].youTubeId)
+    }
 
     const playerOptions = {
         height: '300',
@@ -42,9 +57,19 @@ export default function YouTubePlayer() {
 
     // THIS FUNCTION INCREMENTS THE PLAYLIST SONG TO THE NEXT ONE
     function incSong() {
-        currentSong++;
-        currentSong = currentSong % playlist.length;
+        console.log("incremented song!");
+        // currentSong++;
+        // currentSong = currentSong % playlist.length;
+        store.incSong();
+        
     }
+
+    // function decSong(){
+    //     if(currentSong!=0){
+    //         currentSong--;
+    //         currentSong = currentSong % playlist.length;
+    //     }
+    // }
 
     function onPlayerReady(event) {
         loadAndPlayCurrentSong(event.target);
@@ -78,15 +103,21 @@ export default function YouTubePlayer() {
         } else if (playerStatus === 5) {
             // THE VIDEO HAS BEEN CUED
             console.log("5 Video cued");
+            loadAndPlayCurrentSong(player);
         }
     }
 
-    // if(!store.currentList.songs.youTubeId){
-    //     return "no video";
-    // }
+    if(!store.currentList || noSongs){
+        //RENDERS WHEN THERE IS NO SONG TO PLAY
+        return(
+            <Box sx={{width:'500px', height:'300px', bgcolor:'black'}}>
+
+            </Box>
+        )
+    }
 
     return <YouTube
-        videoId={playlist[currentSong]}
+        videoId={playlist[currentSong].youTubeId}
         opts={playerOptions}
         onReady={onPlayerReady}
         onStateChange={onPlayerStateChange} />;

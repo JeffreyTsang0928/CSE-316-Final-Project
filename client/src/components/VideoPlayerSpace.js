@@ -17,6 +17,26 @@ function VideoPlayerSpace(){
         setTabIndex(newTabIndex)
         console.log("setting tab to " + newTabIndex)
     }
+
+    const { store } = useContext(GlobalStoreContext);
+
+    let playlistName = "";
+    let songTitle = "";
+    let songArtist = "";
+    let songNumber = store.songPlaying;
+    if(store.currentList != null){
+        playlistName = store.currentList.name;
+        if(store.currentList.songs.length){
+            songTitle = store.currentList.songs[songNumber].title;
+            songArtist = store.currentList.songs[songNumber].artist;
+        }
+    }
+
+
+
+
+
+
     return(
         <Box id="video-player-workspace">
             <Box>
@@ -33,16 +53,16 @@ function VideoPlayerSpace(){
                         <b>Now Playing</b>
                     </Typography>
                     <Typography align='left'>
-                        <b>Playlist:</b>
+                        <b>Playlist: {playlistName}</b>
                     </Typography>
                     <Typography align='left'>
-                        <b>Song #:</b>
+                        <b>Song #: {songNumber}</b>
                     </Typography>
                     <Typography align='left'>
-                        <b>Title:</b>
+                        <b>Title: {songTitle}</b>
                     </Typography>
                     <Typography align='left'>
-                        <b>Artist:</b>
+                        <b>Artist: {songArtist}</b>
                     </Typography>
                 </Box>
                 )}
