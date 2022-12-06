@@ -22,6 +22,14 @@ function VideoController() {
         // event.stopPropagation();
         store.decSong();
     }
+    
+    function handlePauseSong(event){
+        store.pauseSong();
+    }
+
+    function handlePlaySong(event){
+        store.playSong();
+    }
 
     let style = {
         border: 1,
@@ -46,10 +54,22 @@ function VideoController() {
                         />
                 </Grid>
                 <Grid>
-                        <StopIcon fontSize='large'/>
+                        <StopIcon sx ={{cursor: 'pointer'}}
+                            fontSize='large'
+                            onClick={(event) => {
+                                handlePauseSong(event)
+                                console.log("Pausing song...");
+                            }}
+                        />
                 </Grid>
                 <Grid>
-                        <PlayArrowIcon fontSize='large'/>
+                        <PlayArrowIcon sx ={{cursor: 'pointer'}}
+                            fontSize='large'
+                            onClick={(event) => {
+                                handlePlaySong(event)
+                                console.log("Playing song...");
+                            }}
+                        />
                 </Grid>
                 <Grid>
                         <FastForwardIcon sx ={{cursor: 'pointer'}}

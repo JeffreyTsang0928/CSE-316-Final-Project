@@ -1,13 +1,14 @@
 import React from 'react';
 import YouTube from 'react-youtube';
 import { useContext } from 'react'
+import {useRef} from 'react';
 import { useHistory } from 'react-router-dom'
 import { GlobalStoreContext } from '../store/index.js';
 import Box from '@mui/material/Box';
 
 
 export default function YouTubePlayer() {
-
+    const playerRef = useRef(null);
     const { store } = useContext(GlobalStoreContext);
 
     // THIS EXAMPLE DEMONSTRATES HOW TO DYNAMICALLY MAKE A
@@ -19,8 +20,8 @@ export default function YouTubePlayer() {
 
     let noSongs=true;
     let playlist = [];
+    var player = null;
     if(store.currentList){
-        console.log("there is a current list")
         if(store.currentList.songs.length){
             playlist = store.currentList.songs
             noSongs = false;
@@ -72,8 +73,23 @@ export default function YouTubePlayer() {
     // }
 
     function onPlayerReady(event) {
-        loadAndPlayCurrentSong(event.target);
-        event.target.playVideo();
+        // loadAndPlayCurrentSong(event.target);
+        // event.target.playVideo();
+        playerRef.current = event.target;
+        console.log("player ready, setting player....")
+        console.log(playerRef.current);
+        store.setPlayer(playerRef.current);
+    }
+
+    if(store.player!=null){
+        console.log("player isnt null!")
+        if(store.playerPaused){
+            console.log("detected that song is paused in the youtubeplayer.js!")
+            store.player.pauseVideo();
+        }
+        else{
+            store.player.playVideo();
+        }
     }
 
     // THIS IS OUR EVENT HANDLER FOR WHEN THE YOUTUBE PLAYER'S STATE
@@ -94,9 +110,11 @@ export default function YouTubePlayer() {
         } else if (playerStatus === 1) {
             // THE VIDEO IS PLAYED
             console.log("1 Video played");
+            store.playSong();
         } else if (playerStatus === 2) {
             // THE VIDEO IS PAUSED
             console.log("2 Video paused");
+            store.pauseSong();
         } else if (playerStatus === 3) {
             // THE VIDEO IS BUFFERING
             console.log("3 Video buffering");
