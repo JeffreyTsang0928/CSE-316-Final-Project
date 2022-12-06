@@ -463,6 +463,31 @@ function GlobalStoreContextProvider(props) {
         }
     }
 
+    store.duplicateList =  function (list) {
+        async function asyncDuplicateList(list){
+            let oldListName = list.name;
+            const response = await api.getPlaylistPairs();
+            if(response.data.success){
+                let idNamePairs=response.data.idNamePairs;
+                for(let i=0; i<idNamePairs.length; i++){
+                    if(idNamePairs[i].name === oldListName){
+                        oldListName+="(1)";
+                    }
+                }
+                list.name = oldListName;
+                async function asyncCreateDuplicatedList(oldListName, list){
+                    const response2 = await api.createPlaylist(oldListName, list.songs, auth.user.email);
+                    if(response2.status === 201){
+                        console.log("successfully cloned a playlist!")
+                        store.loadIdNamePairs();
+                    }
+                }
+                asyncCreateDuplicatedList(oldListName, list);
+            }
+        }
+        asyncDuplicateList(list);
+    }
+
     // THIS FUNCTION LOADS ALL THE ID, NAME PAIRS SO WE CAN LIST ALL THE LISTS
     store.loadIdNamePairs = function () {
         async function asyncLoadIdNamePairs() {

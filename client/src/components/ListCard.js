@@ -125,11 +125,8 @@ function ListCard(props) {
                 className={selectClass} 
                 sx={{borderRadius:"25px", p: "10px", bgcolor: bgcolor, marginTop: '15px', display: 'flex', p: 1 }}
                 style={{transform:"translate(1%,0%)", width: '98%', fontSize: '48pt' }}
-                // button
                 onClick={(event) => {
                     handleClick(event)
-                    // handleLoadList(event, idNamePair._id)
-                    // console.log("heheh");
                 }}
             >
                 <Accordion expanded={expand && currentSelected} sx={{width: '100%', height: '100%'}}>
