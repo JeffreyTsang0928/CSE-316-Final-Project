@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { bgcolor } from '@mui/system';
 import WorkspaceScreen from './WorkspaceScreen';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 
 /*
     This is a card in our list of top 5 lists. It lets select
@@ -28,7 +30,11 @@ function ListCard(props) {
     const [expand, setExpand] = useState(false);
     const { idNamePair, selected } = props;
 
-    const toggleAccordion = () => {
+    const toggleAccordion = (event) => {
+        // event.stopPropagation();
+        if(event.detail==2){
+            event.stopPropagation();
+        }
         setExpand((prev) => !prev);
     }
 
@@ -55,7 +61,7 @@ function ListCard(props) {
 
     function toggleEdit() {
         let newActive = !editActive;
-        if (newActive) {
+        if (newActive && !store.listNameActive) {
             store.setIsListNameEditActive();
         }
         setEditActive(newActive);
@@ -78,6 +84,25 @@ function ListCard(props) {
     function handleUpdateText(event) {
         setText(event.target.value);
     }
+
+    function handleClick(event) {
+        // DOUBLE CLICK IS FOR SONG EDITING
+        // event.stopPropagation();
+        if(event.detail == 1){
+            handleLoadList(event, idNamePair._id)
+        }
+        else if (event.detail === 2) {
+            event.stopPropagation();
+            console.log("double clicked");
+            handleToggleEdit(event)
+        }
+    }
+
+
+
+
+
+
 
     let selectClass = "unselected-list-card";
     let currentSelected = false;
@@ -102,37 +127,32 @@ function ListCard(props) {
                 style={{transform:"translate(1%,0%)", width: '98%', fontSize: '48pt' }}
                 // button
                 onClick={(event) => {
-                    handleLoadList(event, idNamePair._id)
-                    console.log("heheh");
+                    handleClick(event)
+                    // handleLoadList(event, idNamePair._id)
+                    // console.log("heheh");
                 }}
             >
                 <Accordion expanded={expand && currentSelected} sx={{width: '100%', height: '100%'}}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon 
-                                onClick={toggleAccordion}
+                                onClick={(event) => toggleAccordion(event)}
                                 fontSize='36px'
                             />}
                         
                     >
                         <Box sx={{ p: 1, flexGrow: 1 }}>{idNamePair.name}</Box>
                         <Box sx={{ p: 1 }}>
-                            <IconButton onClick={handleToggleEdit} aria-label='edit'>
-                                <EditIcon style={{fontSize:'48pt'}} />
+                            <IconButton >
+                                <ThumbUpOffAltIcon sx={{fontSize:'36px'}}/>
                             </IconButton>
                         </Box>
                         <Box sx={{ p: 1 }}>
-                            <IconButton onClick={(event) => {
-                                    handleDeleteList(event, idNamePair._id)
-                                }} aria-label='delete'>
-                                <DeleteIcon style={{fontSize:'48pt'}} />
+                            <IconButton >
+                                <ThumbDownOffAltIcon sx={{fontSize:'36px'}} />
                             </IconButton>
                         </Box>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Typography>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                            malesuada lacus ex, sit amet blandit leo lobortis eget.
-                        </Typography>
                         <WorkspaceScreen />
                     </AccordionDetails>
                 </Accordion>

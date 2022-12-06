@@ -9,6 +9,7 @@ import List from '@mui/material/List';
 import Grid from '@mui/material/Grid';
 import { GlobalStoreContext } from '../store/index.js'
 import EditToolbar from './EditToolbar.js'
+import AddSongCard from './AddSongCard.js'
 /*
     This React component lets us edit a loaded list, which only
     happens when we are on the proper route.
@@ -44,6 +45,7 @@ function WorkspaceScreen() {
                     />
                 ))  
             }
+            <AddSongCard/>
         </List>            
         { modalJSX }
         </Box>

@@ -64,6 +64,7 @@ function VideoPlayerSpace(){
                     <Typography align='left'>
                         <b>Artist: {songArtist}</b>
                     </Typography>
+                    <VideoController />
                 </Box>
                 )}
                 {tabIndex === 1 && (
@@ -72,7 +73,7 @@ function VideoPlayerSpace(){
                 </Box>
                 )}
             </Box>
-            <VideoController />
+            
         </Box>
     )
 }

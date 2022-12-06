@@ -343,6 +343,7 @@ function GlobalStoreContextProvider(props) {
         if(store.currentList && store.currentList.songs.length){
             if(store.songPlaying < store.currentList.songs.length-1){
                 let nextSong = store.songPlaying+1 % store.currentList.songs.length
+                console.log("Next Song: " + nextSong);
                 // nextSong = nextSong%store.currentList.songs.length
                 storeReducer({
                     type: GlobalStoreActionType.SET_SONG_PLAYING,
