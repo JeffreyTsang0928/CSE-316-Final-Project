@@ -13,6 +13,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import PlaylisterToolbar from './PlaylisterToolbar';
 
 export default function AppBanner() {
     const { auth } = useContext(AuthContext);
@@ -77,13 +78,12 @@ export default function AppBanner() {
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>        
 
-    let editToolbar = "";
+    let playListerToolbar = "";
     let menu = loggedOutMenu;
     if (auth.loggedIn) {
         menu = loggedInMenu;
-        if (store.currentList) {
-            // editToolbar = <EditToolbar />;
-        }
+        playListerToolbar = <PlaylisterToolbar />;
+
     }
     
     function getAccountMenu(loggedIn) {
@@ -107,7 +107,7 @@ export default function AppBanner() {
                     >
                         <Link onClick={handleHouseClick} style={{ textDecoration: 'none', color: 'white' }} to='/'><img src="https://i.ibb.co/6NM0Rgz/playlisterlogo.png" height={85} width={225}/></Link>
                     </Typography>
-                    <Box sx={{ flexGrow: 1 }}>{editToolbar}</Box>
+                    <Box sx={{ flexGrow: 1 }}></Box>
                     <Box sx={{ height: "90px", display: { xs: 'none', md: 'flex' } }}>
                         <IconButton
                             size="large"
@@ -126,6 +126,10 @@ export default function AppBanner() {
             {
                 menu
             }
+            {
+                playListerToolbar
+            }
+
         </Box>
     );
 }

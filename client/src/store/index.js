@@ -488,6 +488,20 @@ function GlobalStoreContextProvider(props) {
         asyncDuplicateList(list);
     }
 
+    store.publishPlaylist = function(){
+        async function asyncpublishPlaylist(){
+            const response = await api.publishPlaylistById(store.currentList._id);
+            if(response.data.success){
+                storeReducer({
+                    type: GlobalStoreActionType.SET_CURRENT_LIST,
+                    payload: store.currentList
+                });
+                store.loadIdNamePairs();
+            }
+        }
+        asyncpublishPlaylist();
+    }
+
     // THIS FUNCTION LOADS ALL THE ID, NAME PAIRS SO WE CAN LIST ALL THE LISTS
     store.loadIdNamePairs = function () {
         async function asyncLoadIdNamePairs() {

@@ -28,6 +28,12 @@ function WorkspaceScreen() {
         modalJSX = <MUIRemoveSongModal />;
     }
     let workspace= <Box/>
+    let addSongCard = <AddSongCard/>;
+
+    if(store.currentList && store.currentList.published){
+        addSongCard = "";
+    }
+
     if(store.currentList!=null){
         workspace = <Box id="song-cards">
         <Box>
@@ -45,7 +51,8 @@ function WorkspaceScreen() {
                     />
                 ))  
             }
-            <AddSongCard/>
+            {/* <AddSongCard/> */}
+            {addSongCard}
         </List>            
         { modalJSX }
         </Box>

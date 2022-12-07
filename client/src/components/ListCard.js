@@ -67,12 +67,12 @@ function ListCard(props) {
         setEditActive(newActive);
     }
 
-    async function handleDeleteList(event, id) {
-        event.stopPropagation();
-        let _id = event.target.id;
-        _id = ("" + _id).substring("delete-list-".length);
-        store.markListForDeletion(id);
-    }
+    // async function handleDeleteList(event, id) {
+    //     event.stopPropagation();
+    //     let _id = event.target.id;
+    //     _id = ("" + _id).substring("delete-list-".length);
+    //     store.markListForDeletion(id);
+    // }
 
     function handleKeyPress(event) {
         if (event.code === "Enter") {
@@ -108,7 +108,7 @@ function ListCard(props) {
     let currentSelected = false;
     let bgcolor = 'white';
     if (store.currentList != null && store.currentList._id === idNamePair._id){
-        bgcolor='yellow';
+        bgcolor='#fff59d';
         currentSelected=true;
     }
     let cardStatus = false;
@@ -129,7 +129,7 @@ function ListCard(props) {
                     handleClick(event)
                 }}
             >
-                <Accordion expanded={expand && currentSelected} sx={{width: '100%', height: '100%'}}>
+                <Accordion expanded={expand && currentSelected} sx={{width: '100%', height: '100%', bgcolor:bgcolor}}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon 
                                 onClick={(event) => toggleAccordion(event)}

@@ -24,6 +24,11 @@ function EditToolbar() {
         store.redo();
     }
 
+    function handlePublishList(event){
+        event.stopPropagation();
+        store.publishPlaylist();
+    }
+
     function handleDuplicateList(event){
         event.stopPropagation();
         console.log("duplicating list with name: " + store.currentList.name);
@@ -62,10 +67,10 @@ function EditToolbar() {
             <Button 
                 disabled={!store.canClose()}
                 id='publish-button'
-                // onClick={(event) => {
-                //     handleClose(event)
-                //     console.log("closing list!");
-                // }}
+                onClick={(event) => {
+                    handlePublishList(event)
+                    console.log("publishing list!");
+                }}
                 sx={{ml:38}}
                 variant="contained">
                     Publish
