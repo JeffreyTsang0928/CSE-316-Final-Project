@@ -40,7 +40,7 @@ function WorkspaceScreen(props) {
         <Box>
         <List 
             id="playlist-cards" 
-            sx={{overflow: 'scroll', height: '100%', width: '100%', bgcolor: '#8000F00F'}}
+            sx={{overflow: 'scroll', height: '100%', width: '100%'}}
         >
             {
                 store.currentList.songs.map((song, index) => (

@@ -1,5 +1,6 @@
 const Playlist = require('../models/playlist-model')
 const User = require('../models/user-model');
+const Comment = require('../models/comment-model');
 const auth = require('../auth')
 /*
     This is our back-end API. It provides all the data services
@@ -148,7 +149,8 @@ getPlaylistPairs = async (req, res) => {
                             _id: list._id,
                             name: list.name,
                             published: list.published,
-                            createdBy: list.ownerUserName
+                            createdBy: list.ownerUserName,
+                            comments: list.comments
                         };
                         pairs.push(pair);
                     }
@@ -182,7 +184,8 @@ getPublishedPlaylistPairs = async (req,res) => {
                     _id: list._id,
                     name: list.name,
                     published: list.published,
-                    createdBy: list.ownerUserName
+                    createdBy: list.ownerUserName,
+                    comments: list.comments
                 };
                 pairs.push(pair);
             }
@@ -354,6 +357,69 @@ publishPlaylistById = async (req,res) => {
     })
 }
 
+commentOnPlaylist = async (req,res) => {
+    if(auth.verifyUser(req) === null){
+        return res.status(400).json({
+            errorMessage: 'UNAUTHORIZED'
+        })
+    }
+
+    const reqBody = req.body;
+    let playlistId = reqBody.id;
+    let commentBody = reqBody.commentBody;
+    let userName = reqBody.userName;
+    
+    if (!reqBody) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must provide a body to update',
+        })
+    }
+
+    Playlist.findOne({ _id: req.params.id }, (err, playlist) => {
+        console.log("playlist found: " + JSON.stringify(playlist));
+        if (err) {
+            return res.status(404).json({
+                err,
+                message: 'Playlist not found!',
+            })
+        }
+
+        let newComment = {
+            userName: userName,
+            body: commentBody
+        }
+        
+
+        // let comments = playlist.comments;
+
+
+        console.log(JSON.stringify(newComment))
+
+        playlist.comments.push(newComment)
+        
+        playlist
+                .save()
+                .then(() => {
+                    console.log("SUCCESS!!! COMMENT POSTED!");
+                    return res.status(200).json({
+                        success: true,
+                        id: playlist._id,
+                        message: 'Playlist updated!',
+                    })
+                })
+                .catch(error => {
+                    console.log("FAILURE in comment: " + JSON.stringify(error));
+                    return res.status(404).json({
+                        error,
+                        message: 'Playlist not updated!',
+                    })
+                })
+
+        // DOES THIS LIST BELONG TO THIS USER? DONT CARE!
+    })
+}
+
 
 
 
@@ -366,5 +432,6 @@ module.exports = {
     updatePlaylist,
     publishPlaylistById,
     getPublishedPlaylistById,
-    getPublishedPlaylistPairs
+    getPublishedPlaylistPairs,
+    commentOnPlaylist
 }

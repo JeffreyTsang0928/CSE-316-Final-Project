@@ -8,6 +8,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { Typography } from '@mui/material';
 import VideoController from './VideoController.js';
+import CommentSection from './CommentSection.js';
 
 
 
@@ -47,7 +48,7 @@ function VideoPlayerSpace(){
 
 
     return(
-        <Box id="video-player-workspace">
+        <Box id="video-player-workspace" sx={{flexDirection: 'column', maxHeight: '700px'}}>
             <Box>
                 <Tabs value={tabIndex} onChange={handleTabChange} >
                     <Tab label=<b>Player</b> sx={{ border: 1, borderRadius: 1, borderBottom: 0 }}/>
@@ -79,9 +80,7 @@ function VideoPlayerSpace(){
                 </Box>
                 )}
                 {tabIndex === 1 && (
-                <Box>
-                    Comments
-                </Box>
+                <CommentSection/>
                 )}
             </Box>
             

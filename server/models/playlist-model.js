@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const ObjectId = Schema.Types.ObjectId
 /*
     This is where we specify the format of the data we're going to put into
     the database.
@@ -18,7 +19,8 @@ const playlistSchema = new Schema(
         }], required: true },
         likes: {type: Number, required: true},
         dislikes: {type: Number, required: true},
-        published: {type: Boolean, required: true}
+        published: {type: Boolean, required: true},
+        comments: [{userName: String, body: String}]
     },
     { timestamps: true },
 )

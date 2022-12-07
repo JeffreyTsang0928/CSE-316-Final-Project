@@ -548,6 +548,20 @@ function GlobalStoreContextProvider(props) {
         asyncChangeListName(id);
     }
 
+    store.commentOnList = function(commentBody){
+        let userName = auth.user.userName;
+        let body = commentBody;
+        let id = store.currentList._id
+        async function asyncCommentOnList(id,body,userName){
+            const response = await api.commentOnPlaylist(id,body,userName);
+            if(response.data.success){
+                store.setCurrentList(id)
+            }
+        }
+        asyncCommentOnList(id,body,userName);
+        // store.setCurrentList(store.currentList._id)
+    }
+
     // THIS FUNCTION PROCESSES CLOSING THE CURRENTLY LOADED LIST
     store.closeCurrentList = function () {
         storeReducer({
@@ -897,6 +911,12 @@ function GlobalStoreContextProvider(props) {
             type: GlobalStoreActionType.SET_LIST_NAME_EDIT_ACTIVE,
             payload: null
         });
+    }
+
+    store.getCurrentListComments = function(){
+        if(store.currentList){
+            return store.currentList.comments;
+        }
     }
 
     function KeyPress(event) {
