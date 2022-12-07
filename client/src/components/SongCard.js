@@ -41,7 +41,7 @@ function SongCard(props) {
     function handleClick(event) {
         // DOUBLE CLICK IS FOR SONG EDITING
         event.stopPropagation();
-        if (event.detail === 2) {
+        if (event.detail === 2 && !published) {
             console.log("double clicked");
             store.showEditSongModal(index, song);
         }
@@ -58,7 +58,7 @@ function SongCard(props) {
             onDragEnter={handleDragEnter}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            draggable="true"
+            draggable={!published}
             onClick={handleClick}
         >
             {index + 1}.

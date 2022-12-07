@@ -91,7 +91,7 @@ function ListCard(props) {
         if(event.detail == 1){
             handleLoadList(event, idNamePair._id)
         }
-        else if (event.detail === 2) {
+        else if (event.detail === 2 && !idNamePair.published) {
             event.stopPropagation();
             console.log("double clicked");
             handleToggleEdit(event)
@@ -107,6 +107,9 @@ function ListCard(props) {
     let selectClass = "unselected-list-card";
     let currentSelected = false;
     let bgcolor = 'white';
+    if(idNamePair.published){
+        bgcolor='#e3f2fd'
+    }
     if (store.currentList != null && store.currentList._id === idNamePair._id){
         bgcolor='#fff59d';
         currentSelected=true;

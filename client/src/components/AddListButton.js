@@ -17,6 +17,7 @@ function AddListButton(){
             aria-label="add"
             id="add-list-button"
             onClick={handleCreateNewList}
+            disabled = {store.allListsView}
         >
             <AddIcon />
         </Fab>
