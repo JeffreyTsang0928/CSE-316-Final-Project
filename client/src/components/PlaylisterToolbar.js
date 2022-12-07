@@ -14,6 +14,7 @@ import { GlobalStoreContext } from '../store'
 
 function PlaylisterToolbar(){
     const [text, setText] = useState("");
+    const { store } = useContext(GlobalStoreContext);
 
 
     function handleKeyPress(event) {
@@ -22,6 +23,16 @@ function PlaylisterToolbar(){
 
         }
     }
+
+
+    function handleClickAllListsButton(event){
+        console.log("clicked on all lists button")
+        event.stopPropagation();
+        store.setAllListsView();
+        console.log("CURR SET OF IDNAME PAIRS:")
+        console.log(store.idNamePairs)
+    }
+
     function handleUpdateText(event) {
         setText(event.target.value);
     }
@@ -39,7 +50,9 @@ function PlaylisterToolbar(){
 
                 <Grid item>
                     <Button>
-                        <GroupsIcon/>
+                        <GroupsIcon 
+                            onClick={(event)=> handleClickAllListsButton(event)
+                        }/>
                     </Button>
                 </Grid>
 

@@ -28,7 +28,7 @@ function ListCard(props) {
     const [editActive, setEditActive] = useState(false);
     const [text, setText] = useState("");
     const [expand, setExpand] = useState(false);
-    const { idNamePair, selected, publishedIdNamePairs } = props;
+    const { idNamePair } = props;
 
     const toggleAccordion = (event) => {
         // event.stopPropagation();

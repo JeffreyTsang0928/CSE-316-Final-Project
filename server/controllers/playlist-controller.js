@@ -106,7 +106,7 @@ getPlaylistById = async (req, res) => {
                     console.log("correct user!");
                     return res.status(200).json({ success: true, playlist: list })
                 }
-                else {
+                else if(!list.published) {
                     console.log("incorrect user!");
                     return res.status(400).json({ success: false, description: "authentication error" });
                 }
@@ -180,12 +180,28 @@ getPublishedPlaylistPairs = async (req,res) => {
                 let list = playlists[key];
                 let pair = {
                     _id: list._id,
-                    name: list.name
+                    name: list.name,
+                    published: list.published,
+                    createdBy: list.ownerUserName
                 };
                 pairs.push(pair);
             }
             return res.status(200).json({ success: true, idNamePairs: pairs })
         }
+    }).catch(err => console.log(err))
+}
+
+getPublishedPlaylistById = async (req, res) => {
+    console.log("Find Playlist with id: " + JSON.stringify(req.params.id));
+
+    await Playlist.findById({ _id: req.params.id }, (err, list) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err });
+        }
+        console.log("Found list: " + JSON.stringify(list));
+
+        // DOES THIS LIST BELONG TO THIS USER? IDK I REMOVED THIS PART LOL
+
     }).catch(err => console.log(err))
 }
 
@@ -348,5 +364,6 @@ module.exports = {
     getPlaylists,
     updatePlaylist,
     publishPlaylistById,
+    getPublishedPlaylistById,
     getPublishedPlaylistPairs
 }
