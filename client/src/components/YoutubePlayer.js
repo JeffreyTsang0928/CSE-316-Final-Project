@@ -7,9 +7,10 @@ import { GlobalStoreContext } from '../store/index.js';
 import Box from '@mui/material/Box';
 
 
-export default function YouTubePlayer() {
+export default function YouTubePlayer(props) {
     const playerRef = useRef(null);
     const { store } = useContext(GlobalStoreContext);
+    const {currTab} = props;
 
     // THIS EXAMPLE DEMONSTRATES HOW TO DYNAMICALLY MAKE A
     // YOUTUBE PLAYER AND EMBED IT IN YOUR SITE. IT ALSO
@@ -21,7 +22,7 @@ export default function YouTubePlayer() {
     let noSongs=true;
     let playlist = [];
     var player = null;
-    if(store.currentList){
+    if(store.currentList && currTab!==1){
         if(store.currentList.songs.length){
             playlist = store.currentList.songs
             noSongs = false;
@@ -81,13 +82,13 @@ export default function YouTubePlayer() {
         store.setPlayer(playerRef.current);
     }
 
-    if(store.player!=null){
+    if(store.player!==null){
         console.log("player isnt null!")
         if(store.playerPaused){
             console.log("detected that song is paused in the youtubeplayer.js!")
             store.player.pauseVideo();
         }
-        else{
+        else if(currTab!==1){
             store.player.playVideo();
         }
     }
@@ -125,14 +126,17 @@ export default function YouTubePlayer() {
         }
     }
 
-    if(!store.currentList || noSongs){
+    if(!store.currentList || noSongs || currTab==1){
         //RENDERS WHEN THERE IS NO SONG TO PLAY
+        console.log("nothing to play here...")
         return(
             <Box sx={{width:'500px', height:'300px', bgcolor:'black'}}>
 
             </Box>
         )
     }
+
+    console.log("rendering YOUTUBE PLAYER")
 
     return <YouTube
         videoId={playlist[currentSong].youTubeId}

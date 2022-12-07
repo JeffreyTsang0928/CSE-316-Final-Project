@@ -32,6 +32,15 @@ function VideoPlayerSpace(){
         }
     }
 
+    function handleSwitchToComments(event){
+        console.log("clicked on comments")
+        event.stopPropagation();
+        if(store.player!=null){
+            store.unsetPlayer();
+        }
+    }
+
+
 
 
 
@@ -42,13 +51,15 @@ function VideoPlayerSpace(){
             <Box>
                 <Tabs value={tabIndex} onChange={handleTabChange} >
                     <Tab label=<b>Player</b> sx={{ border: 1, borderRadius: 1, borderBottom: 0 }}/>
-                    <Tab label=<b>Comments</b> sx={{ border: 1, borderRadius: 1, borderBottom: 0 } }/>
+                    <Tab label=<b>Comments</b> sx={{ border: 1, borderRadius: 1, borderBottom: 0 }}
+                        onClick={(event) => handleSwitchToComments(event)}
+                    />
                 </Tabs>
             </Box>
             <Box sx={{ padding: 2 }}>
                 {tabIndex === 0 && (
                 <Box>
-                    <YouTubePlayer />
+                    <YouTubePlayer currTab={tabIndex}/>
                     <Typography align='center'>
                         <b>Now Playing</b>
                     </Typography>

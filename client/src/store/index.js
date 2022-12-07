@@ -159,7 +159,7 @@ function GlobalStoreContextProvider(props) {
                     player: null,
                     playerPaused: store.playerPaused,
                     publishedIdNamePairs: store.publishedIdNamePairs,
-                    allListsView: store.allListsView
+                    allListsView: false
                 });
             }
             // PREPARE TO DELETE A LIST
@@ -416,6 +416,24 @@ function GlobalStoreContextProvider(props) {
 
     }
 
+    store.setMyListsView = function(){
+        async function asyncLoadIdNamePairs() {
+            const response = await api.getPlaylistPairs();
+            if (response.data.success) {
+                let pairsArray = response.data.idNamePairs;
+                console.log(pairsArray);
+                storeReducer({
+                    type: GlobalStoreActionType.LOAD_ID_NAME_PAIRS,
+                    payload: pairsArray
+                });
+            }
+            else {
+                console.log("API FAILED TO GET THE LIST PAIRS");
+            }
+        }
+        asyncLoadIdNamePairs();
+    }
+
     store.tryAcessingOtherAccountPlaylist = function(){
         let id = "635f203d2e072037af2e6284";
         async function asyncSetCurrentList(id) {
@@ -466,6 +484,13 @@ function GlobalStoreContextProvider(props) {
         storeReducer({
             type: GlobalStoreActionType.SET_PLAYER,
             payload: player
+        })
+    }
+
+    store.unsetPlayer = function(player){
+        storeReducer({
+            type: GlobalStoreActionType.SET_CURRENT_LIST,
+            payload: store.currentList
         })
     }
 

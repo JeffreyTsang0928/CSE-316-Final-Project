@@ -24,6 +24,12 @@ function PlaylisterToolbar(){
         }
     }
 
+    function handleClickMyListsButton(event){
+        console.log("clicked on my lists button");
+        event.stopPropagation();
+        store.setMyListsView();
+    }
+
 
     function handleClickAllListsButton(event){
         console.log("clicked on all lists button")
@@ -44,7 +50,9 @@ function PlaylisterToolbar(){
             <Grid container>
                 <Grid item>
                     <Button>
-                        <HomeIcon/> 
+                        <HomeIcon
+                            onClick={(event) => handleClickMyListsButton(event)}
+                        /> 
                     </Button>
                 </Grid>
 
