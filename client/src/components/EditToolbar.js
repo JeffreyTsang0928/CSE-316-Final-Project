@@ -12,8 +12,9 @@ import CloseIcon from '@mui/icons-material/HighlightOff';
     
     @author McKilla Gorilla
 */
-function EditToolbar() {
+function EditToolbar(props) {
     const { store } = useContext(GlobalStoreContext);
+    const {published} = props;
 
     function handleUndo(event) {
         event.stopPropagation();
@@ -43,7 +44,7 @@ function EditToolbar() {
     return (
         <div id="edit-toolbar">
             <Button 
-                disabled={!store.canUndo()}
+                disabled={!store.canUndo() || published}
                 id='undo-button'
                 onClick={(event) => {
                     handleUndo(event)
@@ -54,7 +55,7 @@ function EditToolbar() {
                     Undo
             </Button>
             <Button 
-                disabled={!store.canRedo()}
+                disabled={!store.canRedo() || published}
                 id='redo-button'
                 onClick={(event) => {
                     handleRedo(event)
@@ -76,7 +77,7 @@ function EditToolbar() {
                     Publish
             </Button>
             <Button 
-                disabled={!store.canClose()}
+                disabled={published}
                 id='delete-button'
                 onClick={(event) => {
                     handleDeleteList(event)
@@ -87,7 +88,6 @@ function EditToolbar() {
                     Delete
             </Button>
             <Button 
-                disabled={!store.canClose()}
                 id='duplicate-button'
                 onClick={(event) => {
                     handleDuplicateList(event)

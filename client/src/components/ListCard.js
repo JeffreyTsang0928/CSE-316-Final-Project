@@ -132,16 +132,14 @@ function ListCard(props) {
     if(published){
         console.log("-----------ID NAME PAIR IN PUBLISHED SET-----------");
         likes=<Box sx={{flexDirection:'row'}}>
-        <Box sx={{ p: 1 }}>
         <IconButton >
             <ThumbUpOffAltIcon sx={{fontSize:'36px'}}/>
         </IconButton>
-        </Box>
-        <Box sx={{ p: 1 }}>
+
             <IconButton >
                 <ThumbDownOffAltIcon sx={{fontSize:'36px'}} />
             </IconButton>
-        </Box>
+
         </Box>
     }
 
@@ -166,7 +164,10 @@ function ListCard(props) {
                             />}
                         
                     >
-                        <Box sx={{ p: 1, flexGrow: 1 }}>{idNamePair.name}</Box>
+                        <Box sx={{ p: 1, flexGrow: 1 }}>{idNamePair.name}
+                            <Box sx={{fontSize:'12px', mt:3}}>By: {idNamePair.createdBy}</Box>
+                        </Box>
+                        
                         {/* <Box sx={{ p: 1 }}>
                             <IconButton >
                                 <ThumbUpOffAltIcon sx={{fontSize:'36px'}}/>
@@ -180,7 +181,7 @@ function ListCard(props) {
                         {likes}
                     </AccordionSummary>
                     <AccordionDetails>
-                        <WorkspaceScreen />
+                        <WorkspaceScreen published={published}/>
                     </AccordionDetails>
                 </Accordion>
 

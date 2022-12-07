@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 function SongCard(props) {
     const { store } = useContext(GlobalStoreContext);
     const [ draggedTo, setDraggedTo ] = useState(0);
-    const { song, index } = props;
+    const { song, index, published } = props;
 
     function handleDragStart(event) {
         event.dataTransfer.setData("song", index);
@@ -70,6 +70,7 @@ function SongCard(props) {
             </a>
             <Button
                 sx={{transform:"translate(-5%, -5%)", width:"5px", height:"30px"}}
+                disabled = {published}
                 variant="contained"
                 id={"remove-song-" + index}
                 className="list-card-button"

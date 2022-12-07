@@ -16,8 +16,9 @@ import AddSongCard from './AddSongCard.js'
     
     @author McKilla Gorilla
 */
-function WorkspaceScreen() {
+function WorkspaceScreen(props) {
     const { store } = useContext(GlobalStoreContext);
+    const {published} = props;
     store.history = useHistory();
     
     let modalJSX = "";
@@ -48,6 +49,7 @@ function WorkspaceScreen() {
                         key={'playlist-song-' + (index)}
                         index={index}
                         song={song}
+                        published = {published}
                     />
                 ))  
             }
@@ -56,7 +58,7 @@ function WorkspaceScreen() {
         </List>            
         { modalJSX }
         </Box>
-        <EditToolbar />
+        <EditToolbar published={published}/>
     </Box>
     }
     return (

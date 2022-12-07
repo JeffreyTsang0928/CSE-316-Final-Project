@@ -512,7 +512,7 @@ function GlobalStoreContextProvider(props) {
                 }
                 list.name = oldListName;
                 async function asyncCreateDuplicatedList(oldListName, list){
-                    const response2 = await api.createPlaylist(oldListName, list.songs, auth.user.email);
+                    const response2 = await api.createPlaylist(oldListName, list.songs, auth.user.email, auth.user.userName);
                     if(response2.status === 201){
                         console.log("successfully cloned a playlist!")
                         store.loadIdNamePairs();
