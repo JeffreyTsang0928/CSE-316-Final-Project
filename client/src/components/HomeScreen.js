@@ -20,6 +20,7 @@ const HomeScreen = () => {
 
     useEffect(() => {
         store.loadIdNamePairs();
+        // store.loadPublishedIdNamePairs();
     }, []);
 
     function handleCreateNewList() {
@@ -34,6 +35,7 @@ const HomeScreen = () => {
                     <ListCard
                         key={pair._id}
                         idNamePair={pair}
+                        publishedIdNamePairs={store.publishedIdNamePairs}
                         selected={false}
                     />
                 ))

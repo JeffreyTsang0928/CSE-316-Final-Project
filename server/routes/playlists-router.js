@@ -18,4 +18,6 @@ router.put('/playlist/:id', auth.verify, PlaylistController.updatePlaylist)
 
 router.put('/playlist/:id/publish', auth.verify, PlaylistController.publishPlaylistById)
 
+router.get('/playlistpairs/published', auth.verify, PlaylistController.getPublishedPlaylistPairs)
+
 module.exports = router

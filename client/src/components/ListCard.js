@@ -28,7 +28,7 @@ function ListCard(props) {
     const [editActive, setEditActive] = useState(false);
     const [text, setText] = useState("");
     const [expand, setExpand] = useState(false);
-    const { idNamePair, selected } = props;
+    const { idNamePair, selected, publishedIdNamePairs } = props;
 
     const toggleAccordion = (event) => {
         // event.stopPropagation();
@@ -116,6 +116,35 @@ function ListCard(props) {
         cardStatus = true;
     }
 
+    //TODO: Figure out how to only render these things if the playlist is published
+    let likes="";
+    let published = idNamePair.published;
+    // console.log("---------------NOT IN FOR LOOP")
+    // console.log(store.publishedIdNamePairs);
+    // for(let i=0; i<publishedIdNamePairs.length; i++){
+    //     console.log("-----------------IN FOR LOOP")
+    //     if(store.publishedIdNamePairs[i]==idNamePair){
+    //         published = true;
+    //     }
+    // }
+
+
+    if(published){
+        console.log("-----------ID NAME PAIR IN PUBLISHED SET-----------");
+        likes=<Box sx={{flexDirection:'row'}}>
+        <Box sx={{ p: 1 }}>
+        <IconButton >
+            <ThumbUpOffAltIcon sx={{fontSize:'36px'}}/>
+        </IconButton>
+        </Box>
+        <Box sx={{ p: 1 }}>
+            <IconButton >
+                <ThumbDownOffAltIcon sx={{fontSize:'36px'}} />
+            </IconButton>
+        </Box>
+        </Box>
+    }
+
     
     let cardElement =
         
@@ -123,8 +152,8 @@ function ListCard(props) {
                 id={idNamePair._id}
                 key={idNamePair._id}
                 className={selectClass} 
-                sx={{borderRadius:"25px", p: "10px", bgcolor: bgcolor, marginTop: '15px', display: 'flex', p: 1 }}
-                style={{transform:"translate(1%,0%)", width: '98%', fontSize: '48pt' }}
+                sx={{borderRadius:"25px", p: "10px", bgcolor: bgcolor, marginTop: '15px', display: 'flex', p: 1}}
+                style={{transform:"translate(1%,0%)", width: '98%', fontSize: '20pt' }}
                 onClick={(event) => {
                     handleClick(event)
                 }}
@@ -138,7 +167,7 @@ function ListCard(props) {
                         
                     >
                         <Box sx={{ p: 1, flexGrow: 1 }}>{idNamePair.name}</Box>
-                        <Box sx={{ p: 1 }}>
+                        {/* <Box sx={{ p: 1 }}>
                             <IconButton >
                                 <ThumbUpOffAltIcon sx={{fontSize:'36px'}}/>
                             </IconButton>
@@ -147,7 +176,8 @@ function ListCard(props) {
                             <IconButton >
                                 <ThumbDownOffAltIcon sx={{fontSize:'36px'}} />
                             </IconButton>
-                        </Box>
+                        </Box> */}
+                        {likes}
                     </AccordionSummary>
                     <AccordionDetails>
                         <WorkspaceScreen />

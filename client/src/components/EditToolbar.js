@@ -65,7 +65,7 @@ function EditToolbar() {
                     Redo
             </Button>
             <Button 
-                disabled={!store.canClose()}
+                disabled={store.currentList.published}
                 id='publish-button'
                 onClick={(event) => {
                     handlePublishList(event)

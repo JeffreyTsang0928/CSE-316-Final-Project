@@ -44,13 +44,16 @@ export const updatePlaylistById = (id, playlist) => {
 
 export const publishPlaylistById = (id) => api.put(`/playlist/${id}/publish`)
 
+export const getPublishedPlaylistPairs = () => api.get('/playlistpairs/published')
+
 const apis = {
     createPlaylist,
     deletePlaylistById,
     getPlaylistById,
     getPlaylistPairs,
     updatePlaylistById,
-    publishPlaylistById
+    publishPlaylistById,
+    getPublishedPlaylistPairs
 }
 
 export default apis
