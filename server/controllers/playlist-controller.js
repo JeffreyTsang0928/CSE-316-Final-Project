@@ -192,7 +192,7 @@ getPublishedPlaylistPairs = async (req,res) => {
 }
 
 getPublishedPlaylistById = async (req, res) => {
-    console.log("Find Playlist with id: " + JSON.stringify(req.params.id));
+    console.log("Find PUBLISHED Playlist with id: " + JSON.stringify(req.params.id));
 
     await Playlist.findById({ _id: req.params.id }, (err, list) => {
         if (err) {
@@ -200,7 +200,7 @@ getPublishedPlaylistById = async (req, res) => {
         }
         console.log("Found list: " + JSON.stringify(list));
 
-        // DOES THIS LIST BELONG TO THIS USER? IDK I REMOVED THIS PART LOL
+        return res.status(200).json({ success: true, playlist: list })
 
     }).catch(err => console.log(err))
 }
@@ -289,6 +289,7 @@ updatePlaylist = async (req, res) => {
 }
 
 publishPlaylistById = async (req,res) => {
+    console.log("PUBLISHING PLAYLIST?")
     if(auth.verifyUser(req) === null){
         return res.status(400).json({
             errorMessage: 'UNAUTHORIZED'

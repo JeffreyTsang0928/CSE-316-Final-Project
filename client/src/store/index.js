@@ -733,17 +733,30 @@ function GlobalStoreContextProvider(props) {
     // moveItem, updateItem, updateCurrentList, undo, and redo
     store.setCurrentList = function (id) {
         async function asyncSetCurrentList(id) {
-            let response = await api.getPlaylistById(id);
-            if (response.data.success) {
-                let playlist = response.data.playlist;
-
-                response = await api.updatePlaylistById(playlist._id, playlist);
+            if(!store.allListsView){
+                let response = await api.getPlaylistById(id);
                 if (response.data.success) {
-                    storeReducer({
-                        type: GlobalStoreActionType.SET_CURRENT_LIST,
-                        payload: playlist
-                    });
-                    // history.push("/playlist/" + playlist._id);
+                    let playlist = response.data.playlist;
+
+                    response = await api.updatePlaylistById(playlist._id, playlist);
+                    if (response.data.success) {
+                        storeReducer({
+                            type: GlobalStoreActionType.SET_CURRENT_LIST,
+                            payload: playlist
+                        });
+                        // history.push("/playlist/" + playlist._id);
+                    }
+                }
+            }
+            else{
+                let response = await api.getPublishedPlaylistById(id);
+                if (response.data.success) {
+                    let playlist = response.data.playlist;
+                        storeReducer({
+                            type: GlobalStoreActionType.SET_CURRENT_LIST,
+                            payload: playlist
+                        });
+                        // history.push("/playlist/" + playlist._id);
                 }
             }
         }
