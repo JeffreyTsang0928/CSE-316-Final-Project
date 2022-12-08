@@ -123,6 +123,7 @@ function ListCard(props) {
     let likes="";
     let published = idNamePair.published;
     let listens = idNamePair.listens
+    console.log("likes: " + idNamePair.likes)
     // console.log("---------------NOT IN FOR LOOP")
     // console.log(store.publishedIdNamePairs);
     // for(let i=0; i<publishedIdNamePairs.length; i++){
@@ -138,10 +139,12 @@ function ListCard(props) {
         likes=<Box sx={{flexDirection:'row'}}>
         <IconButton >
             <ThumbUpOffAltIcon sx={{fontSize:'36px'}}/>
+            {idNamePair.likes}
         </IconButton>
 
             <IconButton >
                 <ThumbDownOffAltIcon sx={{fontSize:'36px'}} />
+                {idNamePair.dislikes}
             </IconButton>
             <Box sx={{fontSize:'12px', mt:3, alignContent: 'left'}}>Listens: <Box color='red'>{idNamePair.listens}</Box></Box>
         </Box>

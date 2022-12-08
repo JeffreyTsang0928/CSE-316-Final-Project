@@ -749,6 +749,54 @@ function GlobalStoreContextProvider(props) {
         console.log("sorted lists!")
     }
 
+    store.sortByLikes = function(){
+        let list = store.idNamePairs;
+        list.sort(function(a,b){
+            let likesA = a.likes
+            let likesB = b.likes
+            return (likesA > likesB) ? -1 : (likesA < likesB) ? 1 : 0;
+        })
+        console.log("------------------LIST:")
+        console.log(list)
+        if(store.allListsView || store.userListsView){
+            storeReducer({
+                type:GlobalStoreActionType.LOAD_PUBLISHED_ID_NAME_PAIRS,
+                payload: list
+            })
+        }
+        else{
+            storeReducer({
+                type:GlobalStoreActionType.LOAD_ID_NAME_PAIRS,
+                payload: list
+            })
+        }
+        console.log("sorted lists!")
+    }
+
+    store.sortByDislikes = function(){
+        let list = store.idNamePairs;
+        list.sort(function(a,b){
+            let dislikesA = a.dislikes
+            let dislikesB = b.dislikes
+            return (dislikesA > dislikesB) ? -1 : (dislikesA < dislikesB) ? 1 : 0;
+        })
+        console.log("------------------LIST:")
+        console.log(list)
+        if(store.allListsView || store.userListsView){
+            storeReducer({
+                type:GlobalStoreActionType.LOAD_PUBLISHED_ID_NAME_PAIRS,
+                payload: list
+            })
+        }
+        else{
+            storeReducer({
+                type:GlobalStoreActionType.LOAD_ID_NAME_PAIRS,
+                payload: list
+            })
+        }
+        console.log("sorted lists!")
+    }
+
     store.commentOnList = function(commentBody){
         let userName = auth.user.userName;
         let body = commentBody;

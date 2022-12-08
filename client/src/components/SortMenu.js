@@ -16,6 +16,16 @@ function SortMenu(){
         store.sortByPublished();
     }
 
+    function handleSortByLikes(event){
+        event.stopPropagation();
+        store.sortByLikes();
+    }
+
+    function handleSortByDislikes(event){
+        event.stopPropagation();
+        store.sortByDislikes();
+    }
+
 
     return(
         <Grid container direction="column" alignItems='center' sx={{zIndex:100}}>
@@ -28,10 +38,12 @@ function SortMenu(){
                 onClick={(event)=>handleSortByPublished(event)}>Publish Date (Newest)</Button>
             </Grid>
             <Grid item>
-                <Button variant='outlined' sx={{minWidth:'208px'}}>Likes (High-Low)</Button>
+                <Button variant='outlined' sx={{minWidth:'208px'}}
+                onClick={(event)=>handleSortByLikes(event)}>Likes (High-Low)</Button>
             </Grid>
             <Grid item>
-                <Button variant='outlined' sx={{minWidth:'208px'}}>Dislikes (High-Low)</Button>
+                <Button variant='outlined' sx={{minWidth:'208px'}}
+                onClick={(event)=>handleSortByDislikes(event)}>Dislikes (High-Low)</Button>
             </Grid>
         </Grid>
     )

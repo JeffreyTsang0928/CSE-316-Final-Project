@@ -201,7 +201,9 @@ getPlaylistPairs = async (req, res) => {
                             createdBy: list.ownerUserName,
                             comments: list.comments,
                             listens: list.listens,
-                            updatedAt: list.updatedAt
+                            updatedAt: list.updatedAt,
+                            likes: list.likes,
+                            dislikes: list.dislikes
                         };
                         pairs.push(pair);
                     }
@@ -238,7 +240,9 @@ getPublishedPlaylistPairs = async (req,res) => {
                     createdBy: list.ownerUserName,
                     comments: list.comments,
                     listens: list.listens,
-                    updatedAt: list.updatedAt
+                    updatedAt: list.updatedAt,
+                    likes: list.likes,
+                    dislikes: list.dislikes
                 };
                 pairs.push(pair);
             }
