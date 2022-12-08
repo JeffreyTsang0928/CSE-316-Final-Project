@@ -900,7 +900,7 @@ function GlobalStoreContextProvider(props) {
     // moveItem, updateItem, updateCurrentList, undo, and redo
     store.setCurrentList = function (id) {
         async function asyncSetCurrentList(id) {
-            if(!store.allListsView && !store.userListsView){
+            if(store.currentList && store.currentList.published){
                 let response = await api.getPlaylistById(id);
                 if (response.data.success) {
                     let playlist = response.data.playlist;
@@ -910,19 +910,7 @@ function GlobalStoreContextProvider(props) {
                         storeReducer({
                             type: GlobalStoreActionType.SET_CURRENT_LIST,
                             payload: playlist
-                        });
-                        // history.push("/playlist/" + playlist._id);
-
-                        async function asyncIncrementListenCount(id){
-                            let response = await api.addPlaylistListen(id);
-                            if(response.data.success){
-                                storeReducer({
-                                    type: GlobalStoreActionType.SET_CURRENT_LIST,
-                                    payload: playlist
-                                });
-                            }
-                        }
-                        asyncIncrementListenCount(id)
+                        });    
 
                     }
                 }
@@ -936,6 +924,16 @@ function GlobalStoreContextProvider(props) {
                             payload: playlist
                         });
                         // history.push("/playlist/" + playlist._id);
+                        async function asyncIncrementListenCount(id){
+                            let response = await api.addPlaylistListen(id);
+                            if(response.data.success){
+                                storeReducer({
+                                    type: GlobalStoreActionType.SET_CURRENT_LIST,
+                                    payload: playlist
+                                });
+                            }
+                        }
+                        asyncIncrementListenCount(id)
                 }
             }
         }

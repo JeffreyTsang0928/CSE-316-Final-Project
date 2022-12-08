@@ -122,6 +122,7 @@ function ListCard(props) {
     //TODO: Figure out how to only render these things if the playlist is published
     let likes="";
     let published = idNamePair.published;
+    let listens = idNamePair.listens
     // console.log("---------------NOT IN FOR LOOP")
     // console.log(store.publishedIdNamePairs);
     // for(let i=0; i<publishedIdNamePairs.length; i++){
@@ -167,8 +168,9 @@ function ListCard(props) {
                             />}
                         
                     >
-                        <Box sx={{ p: 1, flexGrow: 1 }}>{idNamePair.name}
+                        <Box sx={{ p: 1, flexGrow: 1, flexDirection: 'row' }}>{idNamePair.name}
                             <Box sx={{fontSize:'12px', mt:3}}>By: {idNamePair.createdBy}</Box>
+                            <Box sx={{fontSize:'12px', mt:3, alignContent: 'left'}}>Listens: <Box color='red'>{idNamePair.listens}</Box></Box>
                         </Box>
                         
                         {/* <Box sx={{ p: 1 }}>
