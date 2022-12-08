@@ -708,7 +708,34 @@ function GlobalStoreContextProvider(props) {
         async function asyncCommentOnList(id,body,userName){
             const response = await api.commentOnPlaylist(id,body,userName);
             if(response.data.success){
-                store.setCurrentList(id)
+                async function asyncSetCurrentList(id) {
+                    if(store.currentList && !store.currentList.published){
+                        let response = await api.getPlaylistById(id);
+                        if (response.data.success) {
+                            let playlist = response.data.playlist;
+        
+                            response = await api.updatePlaylistById(playlist._id, playlist);
+                            if (response.data.success) {
+                                storeReducer({
+                                    type: GlobalStoreActionType.SET_CURRENT_LIST,
+                                    payload: playlist
+                                });    
+        
+                            }
+                        }
+                    }
+                    else{
+                        let response = await api.getPublishedPlaylistById(id);
+                        if (response.data.success) {
+                            let playlist = response.data.playlist;
+                                storeReducer({
+                                    type: GlobalStoreActionType.SET_CURRENT_LIST,
+                                    payload: playlist
+                                });
+                        }
+                    }
+                }
+                asyncSetCurrentList(id);
             }
         }
         asyncCommentOnList(id,body,userName);
@@ -900,7 +927,8 @@ function GlobalStoreContextProvider(props) {
     // moveItem, updateItem, updateCurrentList, undo, and redo
     store.setCurrentList = function (id) {
         async function asyncSetCurrentList(id) {
-            if(store.currentList && store.currentList.published){
+            if(store.currentList && !store.currentList.published){
+                // console.log("there is a current list and it has been published")
                 let response = await api.getPlaylistById(id);
                 if (response.data.success) {
                     let playlist = response.data.playlist;
@@ -916,6 +944,7 @@ function GlobalStoreContextProvider(props) {
                 }
             }
             else{
+                console.log("in else block")
                 let response = await api.getPublishedPlaylistById(id);
                 if (response.data.success) {
                     let playlist = response.data.playlist;

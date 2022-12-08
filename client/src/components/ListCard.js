@@ -132,7 +132,7 @@ function ListCard(props) {
     //     }
     // }
 
-
+    let publishDate="-"
     if(published){
         console.log("-----------ID NAME PAIR IN PUBLISHED SET-----------");
         likes=<Box sx={{flexDirection:'row'}}>
@@ -143,8 +143,13 @@ function ListCard(props) {
             <IconButton >
                 <ThumbDownOffAltIcon sx={{fontSize:'36px'}} />
             </IconButton>
-
+            <Box sx={{fontSize:'12px', mt:3, alignContent: 'left'}}>Listens: <Box color='red'>{idNamePair.listens}</Box></Box>
         </Box>
+        publishDate=idNamePair.updatedAt;
+        let date = new Date(publishDate)
+        console.log("****************************************DATE: " + date);
+        // publishDate = Date.toLocaleDateString()
+        publishDate = date;
     }
 
     
@@ -170,7 +175,7 @@ function ListCard(props) {
                     >
                         <Box sx={{ p: 1, flexGrow: 1, flexDirection: 'row' }}>{idNamePair.name}
                             <Box sx={{fontSize:'12px', mt:3}}>By: {idNamePair.createdBy}</Box>
-                            <Box sx={{fontSize:'12px', mt:3, alignContent: 'left'}}>Listens: <Box color='red'>{idNamePair.listens}</Box></Box>
+                            <Box sx={{fontSize:'12px', mt:3}}>Published: {publishDate.toString().substring(0,15)}</Box>
                         </Box>
                         
                         {/* <Box sx={{ p: 1 }}>

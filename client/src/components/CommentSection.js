@@ -54,6 +54,7 @@ function CommentSection(props){
                         <CommentCard
                             user={body.userName}
                             body={body.body}
+                            key={index}
                         />
                     ))  
                 }
