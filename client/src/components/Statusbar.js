@@ -30,11 +30,22 @@ function Statusbar() {
     //     </div>
     // );
     // }
+
+    if(store.allListsView){
+        text="All Lists";
+    }
+    else if(store.userListsView){
+        text="User Lists"
+    }
+    else{
+        text="Your Lists"
+    }
+
     if(auth.loggedIn){
         return(
             <div id="playlister-statusbar">
                 <AddListButton />
-                Your Lists
+                {text}
             </div>
         )
     }

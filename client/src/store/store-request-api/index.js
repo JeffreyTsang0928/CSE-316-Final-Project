@@ -31,7 +31,9 @@ export const createPlaylist = (newListName, newSongs, userEmail, ownerUserName) 
         ownerUserName: ownerUserName,
         likes: 0,
         dislikes: 0,
-        published: false
+        published: false,
+        comments: [],
+        listens: 0
     })
 }
 export const deletePlaylistById = (id) => api.delete(`/playlist/${id}`)
@@ -51,6 +53,8 @@ export const getPublishedPlaylistById = (id) => api.get('/playlists/published/'+
 
 export const commentOnPlaylist = (id, commentBody, userName) => api.put(`/playlist/${id}/comments`, {id, commentBody, userName})
 
+export const addPlaylistListen =(id)=>api.put(`/playlist/${id}/view`)
+
 const apis = {
     createPlaylist,
     deletePlaylistById,
@@ -60,7 +64,8 @@ const apis = {
     publishPlaylistById,
     getPublishedPlaylistPairs,
     getPublishedPlaylistById,
-    commentOnPlaylist
+    commentOnPlaylist,
+    addPlaylistListen
 }
 
 export default apis

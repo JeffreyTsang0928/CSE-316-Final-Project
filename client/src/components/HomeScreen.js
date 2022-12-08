@@ -73,7 +73,7 @@ const HomeScreen = () => {
                         <MUIDeleteModal />
                     </Box>
                 </Grid>
-                <Grid item xs={5} sx={{overflow: 'scroll'}}>
+                <Grid item xs={5}>
                     <VideoPlayerSpace/>
                     {/* <YouTubePlayer /> */}
                 </Grid>

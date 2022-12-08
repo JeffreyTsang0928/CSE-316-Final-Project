@@ -20,7 +20,8 @@ const playlistSchema = new Schema(
         likes: {type: Number, required: true},
         dislikes: {type: Number, required: true},
         published: {type: Boolean, required: true},
-        comments: [{userName: String, body: String}]
+        comments: [{userName: String, body: String}],
+        listens: {type: Number, required: true}
     },
     { timestamps: true },
 )

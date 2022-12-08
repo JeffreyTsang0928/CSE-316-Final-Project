@@ -23,4 +23,6 @@ router.get('/playlists/published/:id', auth.verify, PlaylistController.getPublis
 
 router.put('/playlist/:id/comments', auth.verify, PlaylistController.commentOnPlaylist)
 
+router.put('/playlist/:id/view', auth.verify, PlaylistController.addPlaylistListen)
+
 module.exports = router

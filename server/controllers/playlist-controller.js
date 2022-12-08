@@ -89,6 +89,55 @@ deletePlaylist = async (req, res) => {
         asyncFindUser(playlist);
     })
 }
+
+addPlaylistListen = async (req, res) => {
+    if(auth.verifyUser(req) === null){
+        return res.status(400).json({
+            errorMessage: 'UNAUTHORIZED'
+        })
+    }
+
+
+    Playlist.findOne({ _id: req.params.id }, (err, playlist) => {
+        console.log("playlist found: " + JSON.stringify(playlist));
+        if (err) {
+            return res.status(404).json({
+                err,
+                message: 'Playlist not found!',
+            })
+        }
+
+        let newListens = playlist.listens + 1
+        
+
+        playlist.listens=newListens
+        
+        playlist
+                .save()
+                .then(() => {
+                    console.log("SUCCESS!!! VIEWCOUNT WENT UP!");
+                    return res.status(200).json({
+                        success: true,
+                        id: playlist._id,
+                        message: 'Playlist updated!',
+                    })
+                })
+                .catch(error => {
+                    console.log("FAILURE in comment: " + JSON.stringify(error));
+                    return res.status(404).json({
+                        error,
+                        message: 'Playlist not updated!',
+                    })
+                })
+
+        // DOES THIS LIST BELONG TO THIS USER? DONT CARE!
+    })
+}
+
+
+
+
+
 getPlaylistById = async (req, res) => {
     console.log("Find Playlist with id: " + JSON.stringify(req.params.id));
 
@@ -433,5 +482,6 @@ module.exports = {
     publishPlaylistById,
     getPublishedPlaylistById,
     getPublishedPlaylistPairs,
-    commentOnPlaylist
+    commentOnPlaylist,
+    addPlaylistListen
 }

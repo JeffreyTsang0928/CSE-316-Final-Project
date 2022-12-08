@@ -12,15 +12,30 @@ import { Link } from 'react-router-dom'
 import AuthContext from '../auth';
 import { GlobalStoreContext } from '../store'
 
+
 function PlaylisterToolbar(){
     const [text, setText] = useState("");
     const { store } = useContext(GlobalStoreContext);
 
+    let myListsHighlighted=false;
+    let allListsHighlighted=false;
+    let usersListsHighlighted=false;
+
+    if(store.allListsView){
+        allListsHighlighted=true;
+    }
+    else if(store.userListsView){
+        usersListsHighlighted=true;
+    }
+    else{
+        myListsHighlighted=true;
+    }
+
 
     function handleKeyPress(event) {
         if (event.code === "Enter") {
-            //do something
-
+            store.setFilterText(text);
+            setText("");
         }
     }
 
@@ -39,6 +54,11 @@ function PlaylisterToolbar(){
         console.log(store.idNamePairs)
     }
 
+    function handleClickUserListsButton(event){
+        event.stopPropagation();
+        store.setUserListsView();
+    }
+
     function handleUpdateText(event) {
         setText(event.target.value);
     }
@@ -52,6 +72,7 @@ function PlaylisterToolbar(){
                     <Button>
                         <HomeIcon
                             onClick={(event) => handleClickMyListsButton(event)}
+                            color={(myListsHighlighted) ? 'success' : 'primary'}
                         /> 
                     </Button>
                 </Grid>
@@ -60,13 +81,19 @@ function PlaylisterToolbar(){
                     <Button>
                         <GroupsIcon 
                             onClick={(event)=> handleClickAllListsButton(event)
-                        }/>
+                            
+                        }
+                        color={(allListsHighlighted) ? 'success' : 'primary'}
+                        />
                     </Button>
                 </Grid>
 
                 <Grid item>
                     <Button>
-                        <PersonIcon/>
+                        <PersonIcon
+                            color={(usersListsHighlighted) ? 'success' : 'primary'}
+                            onClick={(event)=> handleClickUserListsButton(event)}
+                        />
                     </Button>
                 </Grid>
 
