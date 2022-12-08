@@ -1,0 +1,363 @@
+[{
+  "_id": {
+    "$oid": "63913942b2fac42c386119c8"
+  },
+  "name": "Untitled0ds",
+  "songs": [
+    {
+      "_id": {
+        "$oid": "63913ca24ac4322e509d88df"
+      },
+      "title": "Untitled",
+      "artist": "?",
+      "youTubeId": "dQw4w9WgXcQ"
+    }
+  ],
+  "ownerEmail": "dummyaccount@gmail.com",
+  "ownerUserName": "DummyAccount",
+  "likes": 400,
+  "dislikes": 30,
+  "published": true,
+  "comments": [
+    {
+      "_id": {
+        "$oid": "639144929733ec10283330a2"
+      },
+      "userName": "DummyAccount",
+      "body": "this is awesome"
+    },
+    {
+      "_id": {
+        "$oid": "639144bc9733ec10283330b9"
+      },
+      "userName": "user2",
+      "body": "yeah ikr"
+    },
+    {
+      "_id": {
+        "$oid": "639144be9733ec10283330c0"
+      },
+      "userName": "user2",
+      "body": "yeah ikr"
+    },
+    {
+      "_id": {
+        "$oid": "639144c49733ec10283330cf"
+      },
+      "userName": "user2",
+      "body": ""
+    },
+    {
+      "_id": {
+        "$oid": "639144c59733ec10283330d6"
+      },
+      "userName": "user2",
+      "body": "sadasd"
+    },
+    {
+      "_id": {
+        "$oid": "639144c59733ec10283330dd"
+      },
+      "userName": "user2",
+      "body": "sadasd"
+    },
+    {
+      "_id": {
+        "$oid": "639144c59733ec10283330e4"
+      },
+      "userName": "user2",
+      "body": "sadasd"
+    },
+    {
+      "_id": {
+        "$oid": "639144c59733ec10283330eb"
+      },
+      "userName": "user2",
+      "body": "sadasd"
+    },
+    {
+      "_id": {
+        "$oid": "639144e79733ec10283330ff"
+      },
+      "userName": "user2",
+      "body": "sda"
+    },
+    {
+      "_id": {
+        "$oid": "6391457a9733ec1028333144"
+      },
+      "userName": "user2",
+      "body": "commment"
+    },
+    {
+      "_id": {
+        "$oid": "6391463f9733ec102833315a"
+      },
+      "userName": "user2",
+      "body": "sus"
+    },
+    {
+      "_id": {
+        "$oid": "639146879733ec1028333183"
+      },
+      "userName": "user2",
+      "body": "horse"
+    },
+    {
+      "_id": {
+        "$oid": "639148a59733ec1028333385"
+      },
+      "userName": "user2",
+      "body": "what the"
+    },
+    {
+      "_id": {
+        "$oid": "639149269733ec10283333a3"
+      },
+      "userName": "user2",
+      "body": "horse"
+    }
+  ],
+  "listens": 47,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670461762575"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670472623227"
+    }
+  },
+  "__v": 40
+},{
+  "_id": {
+    "$oid": "63913e274ac4322e509d8a4d"
+  },
+  "name": "Untitled0(1)",
+  "songs": [],
+  "ownerEmail": "dummyaccount@gmail.com",
+  "ownerUserName": "DummyAccount",
+  "likes": 300,
+  "dislikes": 10,
+  "published": true,
+  "comments": [],
+  "listens": 16,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670463015320"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670472621976"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "639146a69733ec1028333196"
+  },
+  "name": "Untitled0(2)",
+  "songs": [],
+  "ownerEmail": "user2@gmail.com",
+  "ownerUserName": "user2",
+  "likes": 2,
+  "dislikes": 400,
+  "published": true,
+  "comments": [
+    {
+      "_id": {
+        "$oid": "639146ac9733ec10283331b7"
+      },
+      "userName": "user2",
+      "body": "sus"
+    },
+    {
+      "_id": {
+        "$oid": "639146c99733ec10283331d3"
+      },
+      "userName": "user2",
+      "body": "how"
+    },
+    {
+      "_id": {
+        "$oid": "639146da9733ec10283331f4"
+      },
+      "userName": "user2",
+      "body": "sadasd"
+    }
+  ],
+  "listens": 24,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670465190692"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670472620082"
+    }
+  },
+  "__v": 3
+},{
+  "_id": {
+    "$oid": "639147609733ec10283332b2"
+  },
+  "name": "Untitled0(3)",
+  "songs": [
+    {
+      "_id": {
+        "$oid": "639147659733ec10283332ca"
+      },
+      "title": "Untitled",
+      "artist": "?",
+      "youTubeId": "dQw4w9WgXcQ"
+    },
+    {
+      "_id": {
+        "$oid": "639147659733ec10283332cb"
+      },
+      "title": "Untitled",
+      "artist": "?",
+      "youTubeId": "dQw4w9WgXcQ"
+    }
+  ],
+  "ownerEmail": "user2@gmail.com",
+  "ownerUserName": "user2",
+  "likes": 201,
+  "dislikes": 0,
+  "published": true,
+  "comments": [
+    {
+      "_id": {
+        "$oid": "6391478a9733ec1028333324"
+      },
+      "userName": "user2",
+      "body": "untitled"
+    }
+  ],
+  "listens": 14,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670465376429"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670472616869"
+    }
+  },
+  "__v": 7
+},{
+  "_id": {
+    "$oid": "6391476c9733ec10283332dd"
+  },
+  "name": "Untitled0(4)",
+  "songs": [
+    {
+      "_id": {
+        "$oid": "639147659733ec10283332ca"
+      },
+      "title": "Untitled",
+      "artist": "?",
+      "youTubeId": "dQw4w9WgXcQ"
+    },
+    {
+      "_id": {
+        "$oid": "639147659733ec10283332cb"
+      },
+      "title": "Untitled",
+      "artist": "?",
+      "youTubeId": "dQw4w9WgXcQ"
+    }
+  ],
+  "ownerEmail": "user2@gmail.com",
+  "ownerUserName": "user2",
+  "likes": 0,
+  "dislikes": 0,
+  "published": false,
+  "comments": [],
+  "listens": 3,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670465388513"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670469992932"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "639163233c980245c410bff9"
+  },
+  "name": "user3playlist",
+  "songs": [
+    {
+      "_id": {
+        "$oid": "639163833c980245c410c038"
+      },
+      "title": "song1",
+      "artist": "?",
+      "youTubeId": "SMItKJ_SNf8"
+    },
+    {
+      "_id": {
+        "$oid": "639163833c980245c410c039"
+      },
+      "title": "song2",
+      "artist": "?",
+      "youTubeId": "1ZU6F0srCl0"
+    }
+  ],
+  "ownerEmail": "user3@gmail.com",
+  "ownerUserName": "user3",
+  "likes": 0,
+  "dislikes": 0,
+  "published": true,
+  "comments": [
+    {
+      "_id": {
+        "$oid": "639163dd3c980245c410c0a6"
+      },
+      "userName": "user3",
+      "body": "comment"
+    },
+    {
+      "_id": {
+        "$oid": "639163e73c980245c410c0af"
+      },
+      "userName": "user3",
+      "body": "this is a comment"
+    },
+    {
+      "_id": {
+        "$oid": "639163ec3c980245c410c0bc"
+      },
+      "userName": "user3",
+      "body": "this is a comment"
+    },
+    {
+      "_id": {
+        "$oid": "6391641f3c980245c410c0d6"
+      },
+      "userName": "user4",
+      "body": "I love this playlist. I am another user!"
+    }
+  ],
+  "listens": 9,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670472483785"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670472735315"
+    }
+  },
+  "__v": 14
+}]

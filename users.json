@@ -1,0 +1,238 @@
+[{
+  "_id": {
+    "$oid": "6390c5ecde370a06b8a0109f"
+  },
+  "playlists": [
+    {
+      "$oid": "6390c759de370a06b8a010a6"
+    },
+    {
+      "$oid": "6390c871b469814bc09c9d4f"
+    },
+    {
+      "$oid": "6390c8b4b469814bc09c9d5b"
+    },
+    {
+      "$oid": "6390c8d7b469814bc09c9d67"
+    },
+    {
+      "$oid": "6390c94be9042533a0754bf8"
+    },
+    {
+      "$oid": "6390c95ff641fd43b8260f6f"
+    },
+    {
+      "$oid": "6390c970f641fd43b8260f7c"
+    },
+    {
+      "$oid": "6390c975f641fd43b8260f9c"
+    },
+    {
+      "$oid": "6390ce07d0cfbb48f05f36c2"
+    },
+    {
+      "$oid": "6390ce2ad0cfbb48f05f36fe"
+    },
+    {
+      "$oid": "6390cf14d0cfbb48f05f370a"
+    },
+    {
+      "$oid": "6390cf5cd0cfbb48f05f3716"
+    },
+    {
+      "$oid": "6390cfd52dcd6343b40730c5"
+    },
+    {
+      "$oid": "6390d05a2dcd6343b407315f"
+    },
+    {
+      "$oid": "6390d05e2dcd6343b407317e"
+    },
+    {
+      "$oid": "6391376a15e5fa4178ce437c"
+    },
+    {
+      "$oid": "639138bb079314044c132163"
+    },
+    {
+      "$oid": "639138d7b2fac42c3861196f"
+    },
+    {
+      "$oid": "6391390fb2fac42c3861197b"
+    },
+    {
+      "$oid": "63913942b2fac42c386119c8"
+    },
+    {
+      "$oid": "63913dc34ac4322e509d89ca"
+    },
+    {
+      "$oid": "63913e274ac4322e509d8a4d"
+    },
+    {
+      "$oid": "639162753c980245c410bfb8"
+    }
+  ],
+  "firstName": "Dummy",
+  "lastName": "Account",
+  "userName": "DummyAccount",
+  "email": "dummyaccount@gmail.com",
+  "passwordHash": "$2a$10$ad9OsRS8R6uqO8lS2UJQ.uacOVvMjxj9aA/XalKyy3irt1NnGQjQC",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670432236669"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670472309018"
+    }
+  },
+  "__v": 23
+},{
+  "_id": {
+    "$oid": "6390d1202dcd6343b407330c"
+  },
+  "playlists": [
+    {
+      "$oid": "6390d1262dcd6343b4073313"
+    },
+    {
+      "$oid": "6390d12f2dcd6343b4073351"
+    },
+    {
+      "$oid": "6390dcb844740e2378e54528"
+    },
+    {
+      "$oid": "639101f1cab5ba35f49a1ae6"
+    },
+    {
+      "$oid": "639101f5cab5ba35f49a1af7"
+    },
+    {
+      "$oid": "639102a4cab5ba35f49a1b70"
+    },
+    {
+      "$oid": "639103dccab5ba35f49a1bdd"
+    },
+    {
+      "$oid": "639105e620f2b41bcc9a0117"
+    },
+    {
+      "$oid": "6391094694273b08c4dfeed8"
+    },
+    {
+      "$oid": "6391178cb3e0f51f502ee61c"
+    },
+    {
+      "$oid": "63911a0b15e5fa4178ce3779"
+    },
+    {
+      "$oid": "63911b2c15e5fa4178ce37f2"
+    },
+    {
+      "$oid": "63911d3f15e5fa4178ce392c"
+    },
+    {
+      "$oid": "63911d9f15e5fa4178ce396a"
+    },
+    {
+      "$oid": "63911e6d15e5fa4178ce39cd"
+    },
+    {
+      "$oid": "63911e6d15e5fa4178ce39d5"
+    },
+    {
+      "$oid": "63911e6d15e5fa4178ce39dd"
+    },
+    {
+      "$oid": "63911e6d15e5fa4178ce39e5"
+    },
+    {
+      "$oid": "6391290115e5fa4178ce3f08"
+    },
+    {
+      "$oid": "6391290115e5fa4178ce3f10"
+    },
+    {
+      "$oid": "63912ff015e5fa4178ce40d1"
+    },
+    {
+      "$oid": "639134a015e5fa4178ce4289"
+    },
+    {
+      "$oid": "639146a69733ec1028333196"
+    },
+    {
+      "$oid": "639146a79733ec102833319e"
+    },
+    {
+      "$oid": "639147609733ec10283332b2"
+    },
+    {
+      "$oid": "6391476c9733ec10283332dd"
+    }
+  ],
+  "firstName": "User",
+  "lastName": "Two",
+  "userName": "user2",
+  "email": "user2@gmail.com",
+  "passwordHash": "$2a$10$oy4cK2rhFRns9MAU9akgpuQ/1NEFY/DvtKdUuNFYYrcfrt.mBad4e",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670435104015"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670465388511"
+    }
+  },
+  "__v": 26
+},{
+  "_id": {
+    "$oid": "639163203c980245c410bff2"
+  },
+  "playlists": [
+    {
+      "$oid": "639163233c980245c410bff9"
+    }
+  ],
+  "firstName": "User",
+  "lastName": "3",
+  "userName": "user3",
+  "email": "user3@gmail.com",
+  "passwordHash": "$2a$10$z/ae1lv0W5s/LsFjFbfhpu6/M/P3h0wiIUdcVL8TAm49HXSD26gNW",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670472480930"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670472483782"
+    }
+  },
+  "__v": 1
+},{
+  "_id": {
+    "$oid": "639164093c980245c410c0c4"
+  },
+  "playlists": [],
+  "firstName": "user",
+  "lastName": "4",
+  "userName": "user4",
+  "email": "user4@gmail.com",
+  "passwordHash": "$2a$10$VKQEvpFUWMHu8Z8FMnExv.ZhgK2fVT/OYbqg1TrYEPZ.DcG7oIfL6",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670472713061"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670472713061"
+    }
+  },
+  "__v": 0
+}]
