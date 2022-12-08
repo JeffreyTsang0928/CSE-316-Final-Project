@@ -11,6 +11,7 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom'
 import AuthContext from '../auth';
 import { GlobalStoreContext } from '../store'
+import SortButton from './SortButton';
 
 
 function PlaylisterToolbar(){
@@ -98,7 +99,7 @@ function PlaylisterToolbar(){
                 </Grid>
 
                 <Grid item
-                 sx={{ml:6, mt:-2.15, mr: 80, fontSize:"14pt", width: "500px"}}> 
+                 sx={{ml:6, mt:-2.15, mr: 60, fontSize:"14pt", width: "500px"}}> 
                     <TextField
                         margin="normal"
                         size="small"
@@ -112,9 +113,7 @@ function PlaylisterToolbar(){
                     />
                 </Grid>
                 <Grid item>
-                    <Button>
-                        Sort <SortIcon/>
-                    </Button>
+                    <SortButton/>
                 </Grid>
             </Grid>
         </Box>

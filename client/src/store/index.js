@@ -701,6 +701,54 @@ function GlobalStoreContextProvider(props) {
         asyncChangeListName(id);
     }
 
+    store.sortByName = function(){
+        let list = store.idNamePairs;
+        list.sort(function(a,b){
+            let textA = a.name.toUpperCase();
+            let textB = b.name.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        })
+        console.log("------------------LIST:")
+        console.log(list)
+        if(store.allListsView || store.userListsView){
+            storeReducer({
+                type:GlobalStoreActionType.LOAD_PUBLISHED_ID_NAME_PAIRS,
+                payload: list
+            })
+        }
+        else{
+            storeReducer({
+                type:GlobalStoreActionType.LOAD_ID_NAME_PAIRS,
+                payload: list
+            })
+        }
+        console.log("sorted lists!")
+    }
+
+    store.sortByPublished = function(){
+        let list = store.idNamePairs;
+        list.sort(function(a,b){
+            let dateA = new Date(a.updatedAt);
+            let dateB = new Date(b.updatedAt);
+            return (dateA > dateB) ? -1 : (dateA < dateB) ? 1 : 0;
+        })
+        console.log("------------------LIST:")
+        console.log(list)
+        if(store.allListsView || store.userListsView){
+            storeReducer({
+                type:GlobalStoreActionType.LOAD_PUBLISHED_ID_NAME_PAIRS,
+                payload: list
+            })
+        }
+        else{
+            storeReducer({
+                type:GlobalStoreActionType.LOAD_ID_NAME_PAIRS,
+                payload: list
+            })
+        }
+        console.log("sorted lists!")
+    }
+
     store.commentOnList = function(commentBody){
         let userName = auth.user.userName;
         let body = commentBody;
